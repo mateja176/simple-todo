@@ -1,0 +1,122 @@
+<context>
+  <story>
+    <id>1.2</id>
+    <title>Database Schema &amp; Drizzle ORM Setup</title>
+    <description>
+      As a backend developer, I want PostgreSQL database initialized with all required tables,
+      So that user and task data can be persisted.
+    </description>
+    <acceptance_criteria>
+      <criterion>Given PostgreSQL 17.7 running locally, when running `pnpm db:migrate`, then all tables created: users, refresh_tokens, tasks, goals, coaching_interactions, coaching_cache</criterion>
+      <criterion>Drizzle schema matches data-architecture.md specification exactly</criterion>
+      <criterion>Indexes created for performance-critical queries (per data-architecture.md)</criterion>
+      <criterion>Connection pooling configured (max 20 connections for MVP)</criterion>
+      <criterion>Database seeded with test data for local development</criterion>
+      <criterion>Migration rollback works correctly</criterion>
+    </acceptance_criteria>
+  </story>
+
+  <technical_context>
+    <database>
+      <type>PostgreSQL</type>
+      <version>17.7</version>
+      <orm>Drizzle ORM 0.44+</orm>
+      <primary_keys>UUIDv4</primary_keys>
+      <timestamps>Unix timestamps (BigInt) or ISO strings (check ADR-006)</timestamps>
+    </database>
+    <schema_definitions>
+      <!-- Extracted from data-architecture.md -->
+      <users_table>
+        export const users = pgTable('users', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          email: varchar('email', { length: 255 }).notNull().unique(),
+          passwordHash: varchar('password_hash', { length: 255 }).notNull(),
+          createdAt: integer('created_at').notNull(), // Unix timestamp
+          updatedAt: integer('updated_at').notNull(),
+          coachingCount: integer('coaching_count').notNull().default(0),
+          coachingResetAt: integer('coaching_reset_at'), // Unix timestamp
+          personaSignals: jsonb('persona_signals').$type&lt;PersonaSignals&gt;()
+        });
+      </users_table>
+      <refresh_tokens_table>
+        export const refreshTokens = pgTable('refresh_tokens', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+          token: varchar('token', { length: 500 }).notNull().unique(),
+          expiresAt: integer('expires_at').notNull(), // Unix timestamp
+          createdAt: integer('created_at').notNull()
+        });
+      </refresh_tokens_table>
+      <tasks_table>
+        export const tasks = pgTable('tasks', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+          text: varchar('text', { length: 500 }).notNull(),
+          importance: integer('importance'), // 1-10, optional
+          confidence: integer('confidence'), // 1-10, optional
+          isCompleted: boolean('is_completed').notNull().default(false),
+          completedAt: integer('completed_at'), // Unix timestamp
+          createdAt: integer('created_at').notNull(),
+          updatedAt: integer('updated_at').notNull()
+        });
+      </tasks_table>
+      <goals_table>
+        export const goals = pgTable('goals', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+          whatMatters: text('what_matters').notNull(),
+          biggestWin: text('biggest_win').notNull(),
+          worstOutcome: text('worst_outcome').notNull(),
+          createdAt: integer('created_at').notNull(),
+          updatedAt: integer('updated_at').notNull()
+        });
+      </goals_table>
+      <coaching_interactions_table>
+        export const coachingInteractions = pgTable('coaching_interactions', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+          taskId: uuid('task_id').references(() => tasks.id, { onDelete: 'set null' }),
+          questionHash: varchar('question_hash', { length: 64 }).notNull(), // SHA-256 of task text
+          response: text('response').notNull(),
+          latency: integer('latency').notNull(), // milliseconds
+          tokenCount: jsonb('token_count').$type&lt;{ input: number; output: number }&gt;(),
+          cost: numeric('cost', { precision: 10, scale: 6 }), // USD
+          cacheHit: boolean('cache_hit').notNull().default(false),
+          createdAt: integer('created_at').notNull()
+        });
+      </coaching_interactions_table>
+      <coaching_cache_table>
+        export const coachingCache = pgTable('coaching_cache', {
+          id: uuid('id').primaryKey().defaultRandom(),
+          questionHash: varchar('question_hash', { length: 64 }).notNull().unique(),
+          response: text('response').notNull(),
+          hitCount: integer('hit_count').notNull().default(1),
+          expiresAt: integer('expires_at').notNull(), // Unix timestamp
+          createdAt: integer('created_at').notNull(),
+          updatedAt: integer('updated_at').notNull()
+        });
+      </coaching_cache_table>
+    </schema_definitions>
+    <indexes>
+      <!-- Extracted from data-architecture.md -->
+      CREATE INDEX idx_tasks_user_id ON tasks(user_id);
+      CREATE INDEX idx_tasks_user_completed ON tasks(user_id, is_completed);
+      CREATE INDEX idx_coaching_interactions_user ON coaching_interactions(user_id);
+      CREATE INDEX idx_coaching_cache_hash ON coaching_cache(question_hash);
+      CREATE INDEX idx_refresh_tokens_user ON refresh_tokens(user_id);
+      CREATE INDEX idx_refresh_tokens_token ON refresh_tokens(token);
+    </indexes>
+  </technical_context>
+
+  <project_structure>
+    <target_app>apps/api</target_app>
+    <schema_location>apps/api/src/db/schema/</schema_location>
+    <env_vars>DATABASE_URL</env_vars>
+  </project_structure>
+
+  <references>
+    <file>docs/architecture/data-architecture.md</file>
+    <file>docs/epics/epic-1-foundation-instant-value.md</file>
+    <file>docs/sprint-artifacts/1-1-project-setup-monorepo-foundation.md</file>
+  </references>
+</context>

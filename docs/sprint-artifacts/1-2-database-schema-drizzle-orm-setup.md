@@ -1,6 +1,6 @@
 # Story 1.2: Database Schema & Drizzle ORM Setup
 
-Status: drafted
+Status: ready-for-dev
 
 ## Story
 
