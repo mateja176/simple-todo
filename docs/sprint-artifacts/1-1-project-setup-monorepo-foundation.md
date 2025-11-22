@@ -1,6 +1,6 @@
 # Story 1.1: Project Setup & Monorepo Foundation
 
-Status: drafted
+Status: ready-for-dev
 
 ## Story
 
@@ -117,7 +117,7 @@ This story establishes the foundation structure that all subsequent stories will
 
 ### Context Reference
 
-<!-- Path(s) to story context XML will be added here by context workflow -->
+- docs/sprint-artifacts/1-1-project-setup-monorepo-foundation.context.xml
 
 ### Agent Model Used
 

@@ -1,0 +1,177 @@
+<story-context id=".bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>1</storyId>
+    <title>Project Setup & Monorepo Foundation</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-22</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-1-project-setup-monorepo-foundation.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>development team</asA>
+    <iWant>a properly initialized monorepo with build system and deployment pipeline</iWant>
+    <soThat>all subsequent stories can be developed and deployed rapidly</soThat>
+    <tasks>
+- [ ] Initialize monorepo structure (AC: 1, 3)
+  - [ ] Create pnpm workspace at project root
+  - [ ] Setup apps/web (Next.js 15.5)
+  - [ ] Setup apps/api (Hono 4.10+)
+  - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+- [ ] Configure build system (AC: 2)
+  - [ ] Install and configure Turborepo 2.3+
+  - [ ] Setup turbo.json with pipeline dependencies
+  - [ ] Verify build caching works (run build twice, confirm instant second run)
+- [ ] Configure TypeScript (AC: 4)
+  - [ ] Create base tsconfig.json in packages/typescript-config
+  - [ ] Extend base config in each app/package
+  - [ ] Enable strict mode, noImplicitAny, strictNullChecks
+  - [ ] Verify no type errors across all packages
+- [ ] Configure linting and formatting (AC: 5)
+  - [ ] Setup ESLint base config in packages/eslint-config
+  - [ ] Configure Prettier with consistent rules
+  - [ ] Add lint scripts to all packages
+  - [ ] Verify lint passes across all packages
+- [ ] Setup git hooks (AC: 6)
+  - [ ] Install husky
+  - [ ] Configure pre-commit hook running lint + type check
+  - [ ] Test hook prevents commit on errors
+- [ ] Setup testing frameworks
+  - [ ] Install and configure Vitest for unit tests
+  - [ ] Install and configure Playwright for E2E
+  - [ ] Create example test in each framework
+- [ ] Initialize CI/CD placeholder
+  - [ ] Create GitHub Actions workflow file
+  - [ ] Add basic build + test checks
+  - [ ] Setup to run on PR and main branch
+- [ ] Documentation
+  - [ ] Create README with setup instructions
+  - [ ] Document prerequisites (Node.js version, pnpm)
+  - [ ] Document common commands (install, build, test, lint)
+    </tasks>
+  </story>
+
+  <acceptanceCriteria>
+1. **Given** a new project repository, **when** running `pnpm install && pnpm build`, **then** all packages compile without errors
+2. Turborepo caching works correctly (second build near-instant)
+3. Project structure follows architecture doc (apps/web, apps/api, packages/*)
+4. TypeScript configured with strict mode across all packages
+5. ESLint + Prettier configured with consistent rules
+6. Git hooks prevent commits with lint/type errors
+  </acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture/project-initialization.md</path>
+        <title>Project Initialization</title>
+        <section>Monorepo Setup, Frontend/Backend Init</section>
+        <snippet>Commands and configs for pnpm workspace, Turborepo setup, Next.js 15 App Router init, Hono backend bootstrap. Includes turbo.json and pnpm-workspace.yaml examples.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture/technology-stack-details.md</path>
+        <title>Technology Stack Details</title>
+        <section>Full stack specs</section>
+        <snippet>Required versions: Next.js 15.5, Hono 4.10+, Turborepo 2.3+, pnpm 9.15+, TypeScript 5.x, Vitest 2.x, Playwright. Details on all frameworks, tools, and integrations.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture/project-structure.md</path>
+        <title>Project Structure</title>
+        <section>Full directory tree</section>
+        <snippet>Complete monorepo layout: apps/web (Next.js), apps/api (Hono), packages/types, packages/validation, packages/typescript-config, packages/eslint-config. Shows expected file paths for all modules.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture/architecture-decision-records.md</path>
+        <title>Architecture Decision Records</title>
+        <section>ADR-001: Monorepo Over Multi-Repo</section>
+        <snippet>Decision: Turborepo + pnpm workspaces for shared types/validation, atomic changes, single version control. Slightly complex setup but massive DX improvement.</snippet>
+      </doc>
+      <doc>
+        <path>docs/epics/epic-1-foundation-instant-value.md</path>
+        <title>Epic 1: Foundation & Instant Value</title>
+        <section>Story 1.1</section>
+        <snippet>Full story spec with ACs, prerequisites, technical notes. Establishes foundation for all subsequent stories. Critical success: fast builds with caching, type safety enforced, git hooks prevent broken commits.</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>package.json</path>
+        <kind>config</kind>
+        <symbol>root package.json</symbol>
+        <lines>1-18</lines>
+        <reason>Current minimal root package.json. Needs workspace config, turborepo deps, build scripts per architecture.</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <node>
+        <dependency name="pnpm" version="9.15+" />
+        <dependency name="turbo" version="2.3+" />
+        <dependency name="typescript" version="5.x" />
+        <dependency name="next" version="15.5" />
+        <dependency name="hono" version="4.10+" />
+        <dependency name="vitest" version="2.x" />
+        <dependency name="playwright" version="latest" />
+        <dependency name="eslint" version="latest" />
+        <dependency name="prettier" version="latest" />
+        <dependency name="husky" version="latest" />
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint>TypeScript strict mode required across all packages (noImplicitAny, strictNullChecks)</constraint>
+    <constraint>Turborepo caching must work - verify second build is near-instant</constraint>
+    <constraint>Git hooks must block commits with lint/type errors (husky pre-commit)</constraint>
+    <constraint>Use exact versions specified: Next.js 15.5, Hono 4.10+, Turborepo 2.3+, pnpm 9.15+</constraint>
+    <constraint>Monorepo structure must match docs/architecture/project-structure.md exactly</constraint>
+    <constraint>Shared packages must follow naming: @repo/types, @repo/validation, @repo/typescript-config, @repo/eslint-config</constraint>
+    <constraint>ESLint and Prettier must have consistent rules across all packages</constraint>
+    <constraint>CI/CD placeholder only - full deployment in Story 1.11</constraint>
+  </constraints>
+  <interfaces>
+    <interface>
+      <name>pnpm workspace</name>
+      <kind>config</kind>
+      <signature>pnpm-workspace.yaml with apps/* and packages/* patterns</signature>
+      <path>pnpm-workspace.yaml</path>
+    </interface>
+    <interface>
+      <name>Turborepo pipeline</name>
+      <kind>config</kind>
+      <signature>turbo.json with build, dev, test, lint tasks and dependency graph</signature>
+      <path>turbo.json</path>
+    </interface>
+    <interface>
+      <name>TypeScript base config</name>
+      <kind>config</kind>
+      <signature>Base tsconfig.json in packages/typescript-config with strict mode enabled</signature>
+      <path>packages/typescript-config/base.json</path>
+    </interface>
+    <interface>
+      <name>ESLint base config</name>
+      <kind>config</kind>
+      <signature>Shared ESLint rules in packages/eslint-config</signature>
+      <path>packages/eslint-config/index.js</path>
+    </interface>
+  </interfaces>
+  <tests>
+    <standards>Vitest for unit tests (fast, modern, native TypeScript). Playwright for E2E (cross-browser). Tests must run in CI before merge. Create example test in each framework to validate setup. Test files colocated with source or in __tests__ directories.</standards>
+    <locations>
+      <location>apps/web/__tests__/</location>
+      <location>apps/api/__tests__/</location>
+      <location>packages/*/__tests__/</location>
+    </locations>
+    <ideas>
+      <idea ac="1">Test: Run pnpm install &amp;&amp; pnpm build, verify zero errors, all packages compile</idea>
+      <idea ac="2">Test: Run build twice, measure second build time, assert near-instant (&lt;5s)</idea>
+      <idea ac="3">Test: Verify directory structure matches architecture doc (apps/web, apps/api, packages/*)</idea>
+      <idea ac="4">Test: Check all tsconfig.json files extend base config and have strict:true</idea>
+      <idea ac="5">Test: Run eslint and prettier across all packages, verify consistent formatting</idea>
+      <idea ac="6">Test: Make intentional lint error, attempt commit, verify hook blocks it</idea>
+      <idea>Integration test: Vitest example test runs successfully</idea>
+      <idea>Integration test: Playwright example E2E test runs successfully</idea>
+      <idea>CI test: GitHub Actions workflow triggers on PR and runs build+test+lint</idea>
+    </ideas>
+  </tests>
+</story-context>
