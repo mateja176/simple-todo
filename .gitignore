@@ -1,1 +1,51 @@
+# Dependencies
 node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+.nyc_output
+test-results
+playwright-report
+playwright/.cache
+
+# Next.js
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Build outputs
+dist
+build
+.turbo
+
+# Environment variables
+.env
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+pino-*.log
+
+# Database
+*.db
+*.sqlite
+
+# Temporary
+tmp
+temp
+*.tmp
