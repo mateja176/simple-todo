@@ -1,0 +1,77 @@
+# Project Initialization
+
+**Monorepo Setup:**
+
+```bash
+# Create monorepo root
+mkdir simple-todo && cd simple-todo
+pnpm init
+
+# Install monorepo tools
+pnpm add -D turbo typescript
+
+# Create workspace structure
+mkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
+```
+
+**Frontend (Next.js 15 App Router):**
+
+```bash
+cd apps
+npx create-next-app@latest web --typescript --tailwind --app --eslint --src-dir --import-alias "@/*"
+```
+
+**Backend (Hono):**
+
+```bash
+cd apps/api
+pnpm init
+pnpm add hono @hono/node-server zod
+pnpm add -D typescript @types/node tsx nodemon drizzle-orm drizzle-kit postgres
+pnpm add -D @anthropic-ai/sdk node-cache pino bcrypt jsonwebtoken
+```
+
+**Shared Packages:**
+
+```bash
+# Types package
+cd packages/types
+pnpm init
+pnpm add -D typescript
+
+# Validation package
+cd packages/validation
+pnpm init
+pnpm add zod
+pnpm add -D typescript
+```
+
+**Configuration Files:**
+
+`pnpm-workspace.yaml`:
+```yaml
+packages:
+  - 'apps/*'
+  - 'packages/*'
+```
+
+`turbo.json`:
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {}
+  }
+}
+```
