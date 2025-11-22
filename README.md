@@ -13,6 +13,7 @@ A modern, full-stack todo application built with Next.js, Hono, and Turborepo.
 
    ```bash
    pnpm install
+   pnpm exec playwright install
    ```
 
 2. Build the project:
@@ -30,8 +31,8 @@ pnpm dev
 
 This will start:
 
-- Web app: http://localhost:3000
-- API: http://localhost:3001 (or similar)
+- Web app: <http://localhost:3000>
+- API: <http://localhost:3001> (or similar)
 
 ## Commands
 
