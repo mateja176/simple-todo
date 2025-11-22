@@ -1,6 +1,6 @@
 # Story 1.2: Database Schema & Drizzle ORM Setup
 
-Status: ready-for-dev
+Status: in-review
 
 ## Story
 
@@ -19,32 +19,32 @@ Status: ready-for-dev
 
 ## Tasks / Subtasks
 
-- [ ] Setup Database Environment (AC: 1)
-  - [ ] Configure Docker Compose for local PostgreSQL 17.7
-  - [ ] Configure environment variables (DATABASE_URL)
+- [x] Setup Database Environment (AC: 1)
+  - [x] Configure Docker Compose for local PostgreSQL 17.7
+  - [x] Configure environment variables (DATABASE_URL)
   - [ ] Setup production database (Railway PostgreSQL addon)
-- [ ] Configure Drizzle ORM (AC: 2)
-  - [ ] Install Drizzle ORM 0.44+ and PostgreSQL adapter
-  - [ ] Configure Drizzle Kit for migrations
-  - [ ] Setup schema directory structure in `apps/api/src/db/schema/`
-- [ ] Implement Database Schema (AC: 2, 3)
-  - [ ] Define `users` table (UUID, email, password_hash, timestamps)
-  - [ ] Define `refresh_tokens` table (UUID, user_id, token, expires_at)
-  - [ ] Define `tasks` table (UUID, user_id, title, status, timestamps)
-  - [ ] Define `goals` table (UUID, user_id, title, description, timestamps)
-  - [ ] Define `coaching_interactions` table (UUID, user_id, task_id, prompt, response)
-  - [ ] Define `coaching_cache` table (key, value, expires_at)
-  - [ ] Add indexes for foreign keys and frequent query fields
-- [ ] Configure Connection Pooling (AC: 4)
-  - [ ] Setup connection pooling in Drizzle config
-  - [ ] Configure max connections (20)
-- [ ] Implement Seeding & Migrations (AC: 5, 6)
-  - [ ] Create seed script with test users and tasks
-  - [ ] Generate initial migration
-  - [ ] Verify migration rollback works
-  - [ ] Add `db:migrate` and `db:seed` scripts to `package.json`
-- [ ] Documentation & Testing
-  - [ ] Document database schema and setup instructions
+- [x] Configure Drizzle ORM (AC: 2)
+  - [x] Install Drizzle ORM 0.44+ and PostgreSQL adapter
+  - [x] Configure Drizzle Kit for migrations
+  - [x] Setup schema directory structure in `apps/api/src/db/schema/`
+- [x] Implement Database Schema (AC: 2, 3)
+  - [x] Define `users` table (UUID, email, password_hash, timestamps)
+  - [x] Define `refresh_tokens` table (UUID, user_id, token, expires_at)
+  - [x] Define `tasks` table (UUID, user_id, title, status, timestamps)
+  - [x] Define `goals` table (UUID, user_id, title, description, timestamps)
+  - [x] Define `coaching_interactions` table (UUID, user_id, task_id, prompt, response)
+  - [x] Define `coaching_cache` table (key, value, expires_at)
+  - [x] Add indexes for foreign keys and frequent query fields
+- [x] Configure Connection Pooling (AC: 4)
+  - [x] Setup connection pooling in Drizzle config
+  - [x] Configure max connections (20)
+- [x] Implement Seeding & Migrations (AC: 5, 6)
+  - [x] Create seed script with test users and tasks
+  - [x] Generate initial migration
+  - [x] Verify migration rollback works
+  - [x] Add `db:migrate` and `db:seed` scripts to `package.json`
+- [x] Documentation & Testing
+  - [x] Document database schema and setup instructions
   - [ ] Add unit tests for schema validation (if applicable)
 
 ## Dev Notes
@@ -99,12 +99,32 @@ Gemini 3 Pro (Preview)
 
 ### Completion Notes List
 
-(Empty)
+- Database environment setup with Docker Compose (PostgreSQL 17.7).
+- Drizzle ORM configured with `postgres` driver and connection pooling.
+- Schema implemented matching `data-architecture.md`.
+- Migrations generated and applied.
+- Seeding script created and verified.
+- Documentation added in `docs/architecture/database-setup.md`.
 
 ### File List
 
-(Empty)
+- `docker-compose.yml`
+- `apps/api/.env`
+- `apps/api/.env.example`
+- `apps/api/package.json`
+- `apps/api/drizzle.config.ts`
+- `apps/api/src/db/index.ts`
+- `apps/api/src/db/seed.ts`
+- `apps/api/src/db/schema/index.ts`
+- `apps/api/src/db/schema/users.ts`
+- `apps/api/src/db/schema/refresh-tokens.ts`
+- `apps/api/src/db/schema/tasks.ts`
+- `apps/api/src/db/schema/goals.ts`
+- `apps/api/src/db/schema/coaching-interactions.ts`
+- `apps/api/src/db/schema/coaching-cache.ts`
+- `docs/architecture/database-setup.md`
 
 ### Change Log
 
 - 2025-11-22: Story drafted by SM Agent
+- 2025-11-22: Implementation completed by Dev Agent. Database setup, schema, migrations, and seeding implemented. Documentation added.
