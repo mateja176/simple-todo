@@ -1,6 +1,6 @@
 # Story 1.2: Database Schema & Drizzle ORM Setup
 
-Status: in-review
+Status: done
 
 ## Story
 
@@ -98,6 +98,11 @@ Gemini 3 Pro (Preview)
 (Empty)
 
 ### Completion Notes List
+
+- Code review passed.
+- Schema verified against architecture.
+- Migration and seed scripts verified.
+- Connection pooling verified.
 
 - Database environment setup with Docker Compose (PostgreSQL 17.7).
 - Drizzle ORM configured with `postgres` driver and connection pooling.
