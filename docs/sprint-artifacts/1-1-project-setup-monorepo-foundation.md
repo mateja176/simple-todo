@@ -12,7 +12,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
 
 1. **Given** a new project repository, **when** running `pnpm install && pnpm build`, **then** all packages compile without errors
 2. Turborepo caching works correctly (second build near-instant)
-3. Project structure follows architecture doc (apps/web, apps/api, packages/*)
+3. Project structure follows architecture doc (apps/web, apps/api, packages/\*)
 4. TypeScript configured with strict mode across all packages
 5. ESLint + Prettier configured with consistent rules
 6. Git hooks prevent commits with lint/type errors
@@ -21,7 +21,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
 
 - [ ] Initialize monorepo structure (AC: 1, 3)
   - [ ] Create pnpm workspace at project root
-  - [ ] Setup apps/web (Next.js 15.5)
+  - [ ] Setup apps/web (Next.js 16.0.3)
   - [ ] Setup apps/api (Hono 4.10+)
   - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
 - [ ] Configure build system (AC: 2)
@@ -60,18 +60,21 @@ so that **all subsequent stories can be developed and deployed rapidly**.
 ### Technical Context
 
 **Monorepo Architecture** [Source: docs/architecture/architecture-decision-records.md ADR-001]
+
 - Turborepo for build orchestration and caching
 - pnpm workspaces for dependency management
 - Shared packages for code reuse across apps
 
 **Required Package Versions:**
+
 - pnpm: 9.15+
 - Turborepo: 2.3+
-- Next.js: 15.5
+- Next.js: 16.0.3
 - Hono: 4.10+
 - TypeScript: 5.x (strict mode)
 
 **Folder Structure:**
+
 ```
 simple-todo/
 ├── apps/
@@ -88,11 +91,13 @@ simple-todo/
 ```
 
 **Testing Strategy:**
+
 - Vitest for unit tests (fast, modern)
 - Playwright for E2E tests (cross-browser)
 - Tests should run in CI before merge
 
 **CI/CD Placeholder:**
+
 - Basic GitHub Actions setup only
 - Full deployment pipeline in Story 1.11
 - Should verify: build passes, tests pass, lint passes
@@ -102,6 +107,7 @@ simple-todo/
 This story establishes the foundation structure that all subsequent stories will build upon. No conflicts expected as this is the first story.
 
 **Critical Success Factors:**
+
 - Build must be fast (caching working)
 - Type safety enforced from start
 - Git hooks prevent broken code from being committed

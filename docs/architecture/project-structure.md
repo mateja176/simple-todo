@@ -3,7 +3,7 @@
 ```
 simple-todo/                                 # Monorepo root
 ├── apps/
-│   ├── web/                                # Next.js 15 frontend
+│   ├── web/                                # Next.js 16.0.3 frontend
 │   │   ├── src/
 │   │   │   ├── app/                        # App Router
 │   │   │   │   ├── (auth)/                # Auth route group

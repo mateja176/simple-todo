@@ -21,7 +21,7 @@
 **Then** all packages compile without errors
 
 **And** Turborepo caching works correctly (second build near-instant)
-**And** Project structure follows architecture doc (apps/web, apps/api, packages/*)
+**And** Project structure follows architecture doc (apps/web, apps/api, packages/\*)
 **And** TypeScript configured with strict mode across all packages
 **And** ESLint + Prettier configured with consistent rules
 **And** Git hooks prevent commits with lint/type errors
@@ -29,11 +29,12 @@
 **Prerequisites:** None (first story)
 
 **Technical Notes:**
+
 - Monorepo structure per ADR-001 (architecture/architecture-decision-records.md)
 - Turborepo 2.3+ for build orchestration
 - pnpm 9.15+ workspaces
 - Shared packages: @repo/types, @repo/validation, @repo/typescript-config, @repo/eslint-config
-- Initialize Next.js 15.5 (apps/web), Hono 4.10+ (apps/api)
+- Initialize Next.js 16.0.3 (apps/web), Hono 4.10+ (apps/api)
 - Setup Vitest for unit tests, Playwright for E2E
 - CI/CD placeholder (GitHub Actions basic setup)
 - Document setup in README with prerequisites
@@ -61,6 +62,7 @@
 **Prerequisites:** Story 1.1 (project structure exists)
 
 **Technical Notes:**
+
 - Drizzle ORM 0.44+ with PostgreSQL 17 adapter
 - Schema files in apps/api/src/db/schema/
 - Unix timestamps for all date fields (ADR-006)
@@ -99,6 +101,7 @@
 **Prerequisites:** Story 1.2 (database schema exists)
 
 **Technical Notes:**
+
 - Endpoints per api-contracts.md
 - bcrypt with cost factor 12 (security-architecture.md)
 - JWT signing secret from environment variable (JWT_SECRET)
@@ -139,6 +142,7 @@
 **Prerequisites:** Story 1.3 (signup/login exists)
 
 **Technical Notes:**
+
 - FR4 (session persistence), FR5 (logout)
 - Token rotation prevents replay attacks
 - Cleanup job for expired refresh tokens (daily cron)
@@ -171,6 +175,7 @@
 **Prerequisites:** Story 1.4 (auth endpoints exist)
 
 **Technical Notes:**
+
 - Hono middleware pattern
 - JWT verification with jsonwebtoken library
 - Attach userId to request context for downstream handlers
@@ -207,6 +212,7 @@
 **Prerequisites:** Story 1.4 (auth API exists)
 
 **Technical Notes:**
+
 - Zustand for auth state (currentUser, accessToken, isAuthenticated)
 - TanStack Query for API calls with auth interceptor
 - Automatic token refresh on 401 responses
@@ -232,6 +238,7 @@
 **And** subheadline: AI coaching that prevents wasted effort on wrong priorities
 **And** 15-second demo video showing user journey: task creation → coaching → aha moment
 **And** Real example quotes visible:
+
 - Alex: "AI caught me spending week on 0-user-wanted feature"
 - Jordan: "AI saved me from all-nighter on low-value assignment"
 
@@ -242,6 +249,7 @@
 **Prerequisites:** Story 1.1 (Next.js app exists)
 
 **Technical Notes:**
+
 - FR66-67 (landing page, demo video)
 - Next.js SSR for SEO (landing page only)
 - Video: <5MB, autoplay muted loop, lazy load below fold
@@ -282,6 +290,7 @@
 **Prerequisites:** Story 1.6 (frontend auth state exists)
 
 **Technical Notes:**
+
 - React Hook Form + Zod resolver (@repo/validation)
 - Optimistic UI: show loading, hide form details during submission
 - WCAG 2.1 AA compliance (NFR-A1): labels, ARIA, contrast
@@ -325,6 +334,7 @@
 **Prerequisites:** Story 1.3 (auth API exists)
 
 **Technical Notes:**
+
 - FR3 (password reset)
 - Reset tokens stored in password_reset_tokens table (add to schema in Story 1.2)
 - Tokens: random 32-byte hex, SHA-256 hashed in DB
@@ -361,6 +371,7 @@
 **Prerequisites:** Story 1.5 (protected routes exist)
 
 **Technical Notes:**
+
 - FR6, FR64 (account deletion, GDPR compliance)
 - Database cascade deletes configured in schema (onDelete: 'cascade')
 - Soft delete NOT used (hard delete for GDPR)
@@ -397,6 +408,7 @@
 **Prerequisites:** Story 1.1 (project structure exists)
 
 **Technical Notes:**
+
 - Vercel for frontend (apps/web): automatic preview deploys, edge CDN
 - Railway for backend (apps/api) + PostgreSQL: usage-based pricing
 - Environment variables: JWT_SECRET, DATABASE_URL, ANTHROPIC_API_KEY (placeholder), etc.
@@ -438,6 +450,7 @@
 **Prerequisites:** Story 1.1 (project structure exists)
 
 **Technical Notes:**
+
 - Service blueprint insight: monitoring infrastructure needed from start
 - Pino logger in backend (fast, structured)
 - Frontend: error boundary component captures React errors

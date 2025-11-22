@@ -14,7 +14,7 @@ pnpm add -D turbo typescript
 mkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
 ```
 
-**Frontend (Next.js 15 App Router):**
+**Frontend (Next.js 16.0.3 App Router):**
 
 ```bash
 cd apps
@@ -49,13 +49,15 @@ pnpm add -D typescript
 **Configuration Files:**
 
 `pnpm-workspace.yaml`:
+
 ```yaml
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - "apps/*"
+  - "packages/*"
 ```
 
 `turbo.json`:
+
 ```json
 {
   "$schema": "https://turbo.build/schema.json",
