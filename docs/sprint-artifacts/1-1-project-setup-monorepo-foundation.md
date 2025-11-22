@@ -1,6 +1,6 @@
 # Story 1.1: Project Setup & Monorepo Foundation
 
-Status: review
+Status: in-progress
 
 ## Story
 
@@ -183,3 +183,41 @@ Gemini 3 Pro (Preview)
 - packages/typescript-config/base.json
 - packages/eslint-config/package.json
 - packages/eslint-config/index.js
+
+## Senior Developer Review (AI)
+
+**Reviewer:** BMad
+**Date:** 2025-11-22
+**Outcome:** Changes Requested
+
+### Summary
+
+The monorepo structure, shared packages, and tooling (Turborepo, pnpm, ESLint, Prettier) are correctly initialized. However, a critical configuration issue in `apps/api` prevents successful re-builds, violating the core requirement for a stable build system. Documentation for E2E testing is also incomplete.
+
+### Critical Defects (Must Fix)
+
+1. **Build Idempotency Failure (AC 1, AC 2)**:
+   - **Issue**: `apps/api/tsconfig.json` does not exclude the `dist` directory.
+   - **Evidence**: Running `pnpm build` twice results in `error TS5055: Cannot write file ... because it would overwrite input file` for `apps/api`.
+   - **Fix**: Add `"exclude": ["node_modules", "dist"]` to `apps/api/tsconfig.json`.
+
+### Documentation Gaps
+
+1. **Playwright Setup**:
+   - **Issue**: `README.md` instructs to run `pnpm test:e2e` but fails to mention that Playwright browsers must be installed first.
+   - **Fix**: Add `pnpm exec playwright install` to the Setup or Commands section in `README.md`.
+
+### Minor Issues & Suggestions
+
+1. **Lint Warning**: `apps/api/src/index.ts` contains a `console.log` statement which triggers a lint warning.
+2. **Next.js Warning**: `apps/web` build shows a warning about workspace root inference. Consider setting `turbopack.root` in `next.config.ts` if persistent.
+
+### Validation Log
+
+- [x] Structure Check: Matches architecture.
+- [x] Build Check: **FAILED** (Idempotency issue).
+- [x] TypeScript Check: Strict mode enabled.
+- [x] Lint Check: Passed (1 warning).
+- [x] Git Hooks: Verified.
+- [x] Tests: Unit tests passed. E2E passed (after manual install).
+- [x] CI/CD: Workflow file exists and looks correct.
