@@ -1,6 +1,6 @@
 # Story 1.1: Project Setup & Monorepo Foundation
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -19,41 +19,41 @@ so that **all subsequent stories can be developed and deployed rapidly**.
 
 ## Tasks / Subtasks
 
-- [ ] Initialize monorepo structure (AC: 1, 3)
-  - [ ] Create pnpm workspace at project root
-  - [ ] Setup apps/web (Next.js 16.0.3)
-  - [ ] Setup apps/api (Hono 4.10+)
-  - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
-- [ ] Configure build system (AC: 2)
-  - [ ] Install and configure Turborepo 2.3+
-  - [ ] Setup turbo.json with pipeline dependencies
-  - [ ] Verify build caching works (run build twice, confirm instant second run)
-- [ ] Configure TypeScript (AC: 4)
-  - [ ] Create base tsconfig.json in packages/typescript-config
-  - [ ] Extend base config in each app/package
-  - [ ] Enable strict mode, noImplicitAny, strictNullChecks
-  - [ ] Verify no type errors across all packages
-- [ ] Configure linting and formatting (AC: 5)
-  - [ ] Setup ESLint base config in packages/eslint-config
-  - [ ] Configure Prettier with consistent rules
-  - [ ] Add lint scripts to all packages
-  - [ ] Verify lint passes across all packages
-- [ ] Setup git hooks (AC: 6)
-  - [ ] Install husky
-  - [ ] Configure pre-commit hook running lint + type check
-  - [ ] Test hook prevents commit on errors
-- [ ] Setup testing frameworks
-  - [ ] Install and configure Vitest for unit tests
-  - [ ] Install and configure Playwright for E2E
-  - [ ] Create example test in each framework
-- [ ] Initialize CI/CD placeholder
-  - [ ] Create GitHub Actions workflow file
-  - [ ] Add basic build + test checks
-  - [ ] Setup to run on PR and main branch
-- [ ] Documentation
-  - [ ] Create README with setup instructions
-  - [ ] Document prerequisites (Node.js version, pnpm)
-  - [ ] Document common commands (install, build, test, lint)
+- [x] Initialize monorepo structure (AC: 1, 3)
+  - [x] Create pnpm workspace at project root
+  - [x] Setup apps/web (Next.js 16.0.3)
+  - [x] Setup apps/api (Hono 4.10+)
+  - [x] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+- [x] Configure build system (AC: 2)
+  - [x] Install and configure Turborepo 2.3+
+  - [x] Setup turbo.json with pipeline dependencies
+  - [x] Verify build caching works (run build twice, confirm instant second run)
+- [x] Configure TypeScript (AC: 4)
+  - [x] Create base tsconfig.json in packages/typescript-config
+  - [x] Extend base config in each app/package
+  - [x] Enable strict mode, noImplicitAny, strictNullChecks
+  - [x] Verify no type errors across all packages
+- [x] Configure linting and formatting (AC: 5)
+  - [x] Setup ESLint base config in packages/eslint-config
+  - [x] Configure Prettier with consistent rules
+  - [x] Add lint scripts to all packages
+  - [x] Verify lint passes across all packages
+- [x] Setup git hooks (AC: 6)
+  - [x] Install husky
+  - [x] Configure pre-commit hook running lint + type check
+  - [x] Test hook prevents commit on errors
+- [x] Setup testing frameworks
+  - [x] Install and configure Vitest for unit tests
+  - [x] Install and configure Playwright for E2E
+  - [x] Create example test in each framework
+- [x] Initialize CI/CD placeholder
+  - [x] Create GitHub Actions workflow file
+  - [x] Add basic build + test checks
+  - [x] Setup to run on PR and main branch
+- [x] Documentation
+  - [x] Create README with setup instructions
+  - [x] Document prerequisites (Node.js version, pnpm)
+  - [x] Document common commands (install, build, test, lint)
 
 ## Dev Notes
 
@@ -127,16 +127,59 @@ This story establishes the foundation structure that all subsequent stories will
 
 ### Agent Model Used
 
-<!-- Will be populated by dev agent -->
+Gemini 3 Pro (Preview)
 
 ### Debug Log References
 
-<!-- Will be populated by dev agent during implementation -->
+- Fixed `apps/web` linting issue by using `eslint .` instead of `next lint`.
+- Fixed `apps/api` type check issue by overriding `moduleResolution` to `NodeNext`.
+- Fixed `apps/web` type check issue by adding `exports` to `packages/typescript-config`.
+- Added `test` task to `turbo.json` which was missing.
+- Added dummy `test` scripts to packages to satisfy `turbo`.
+- Fixed Vitest running Playwright tests by excluding `e2e` folder in `apps/web/vitest.config.ts`.
 
 ### Completion Notes List
 
-<!-- Will be populated by dev agent upon completion -->
+- Initialized monorepo with Turborepo, pnpm workspaces.
+- Setup `apps/web` (Next.js) and `apps/api` (Hono).
+- Created shared packages: `types`, `validation`, `typescript-config`, `eslint-config`.
+- Configured TypeScript strict mode and ESLint/Prettier.
+- Setup Husky pre-commit hook (lint + type check).
+- Setup Vitest for unit tests and Playwright for E2E.
+- Created CI/CD workflow.
+- Created README.
 
 ### File List
 
-<!-- Will be populated by dev agent with created/modified files -->
+- package.json
+- pnpm-workspace.yaml
+- turbo.json
+- .prettierrc
+- .prettierignore
+- .husky/pre-commit
+- .github/workflows/ci.yml
+- README.md
+- apps/web/package.json
+- apps/web/tsconfig.json
+- apps/web/vitest.config.ts
+- apps/web/vitest.setup.ts
+- apps/web/**tests**/example.test.tsx
+- apps/web/e2e/example.spec.ts
+- apps/web/playwright.config.ts
+- apps/api/package.json
+- apps/api/tsconfig.json
+- apps/api/eslint.config.js
+- apps/api/vitest.config.ts
+- apps/api/**tests**/example.test.ts
+- packages/types/package.json
+- packages/types/tsconfig.json
+- packages/types/eslint.config.js
+- packages/types/src/index.ts
+- packages/validation/package.json
+- packages/validation/tsconfig.json
+- packages/validation/eslint.config.js
+- packages/validation/src/index.ts
+- packages/typescript-config/package.json
+- packages/typescript-config/base.json
+- packages/eslint-config/package.json
+- packages/eslint-config/index.js

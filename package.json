@@ -1,18 +1,24 @@
 {
   "name": "simple-todo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "check-types": "turbo check-types",
+    "test": "turbo test",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky"
   },
-  "keywords": [],
-  "author": "Mateja Petrovic <mateja176@gmail.com> (https://github.com/mateja176)",
-  "license": "MIT",
   "devDependencies": {
-    "bmad-method": "^6.0.0-alpha.12"
+    "bmad-method": "^6.0.0-alpha.12",
+    "husky": "^9.1.7",
+    "prettier": "^3.0.0",
+    "turbo": "^2.3.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
   }
 }
