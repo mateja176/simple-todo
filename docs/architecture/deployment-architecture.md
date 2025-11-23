@@ -28,11 +28,13 @@
 ## Environment Variables
 
 **Frontend (.env.local):**
+
 ```bash
 NEXT_PUBLIC_API_URL=https://api.simple-todo.railway.app
 ```
 
 **Backend (.env):**
+
 ```bash
 DATABASE_URL=postgresql://user:pass@host:5432/db
 JWT_SECRET=random-secret-key

@@ -3,6 +3,7 @@
 ## Authentication Endpoints
 
 **POST /api/auth/signup**
+
 ```typescript
 // Request
 {
@@ -26,6 +27,7 @@
 ```
 
 **POST /api/auth/login**
+
 ```typescript
 // Request
 {
@@ -47,6 +49,7 @@
 ```
 
 **POST /api/auth/refresh**
+
 ```typescript
 // Request (no body, uses httpOnly cookie)
 
@@ -61,6 +64,7 @@
 ```
 
 **POST /api/auth/logout**
+
 ```typescript
 // Request (no body)
 
@@ -75,6 +79,7 @@
 ## Task Endpoints
 
 **GET /api/tasks**
+
 ```typescript
 // Query params: ?completed=false
 
@@ -98,6 +103,7 @@
 ```
 
 **POST /api/tasks**
+
 ```typescript
 // Request
 {
@@ -124,6 +130,7 @@
 ```
 
 **PATCH /api/tasks/:id**
+
 ```typescript
 // Request
 {
@@ -149,6 +156,7 @@
 ```
 
 **DELETE /api/tasks/:id**
+
 ```typescript
 // Response (200)
 {
@@ -160,6 +168,7 @@
 ## Coaching Endpoints
 
 **POST /api/coaching**
+
 ```typescript
 // Request
 {

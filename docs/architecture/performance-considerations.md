@@ -3,12 +3,14 @@
 ## Caching Strategy
 
 **Tier 1: In-Memory (node-cache)**
+
 - Coaching responses: 1 hour TTL
 - User goals: 5 min TTL
 - Persona signals: 10 min TTL
 - Hit rate target: 60%
 
 **Tier 2: Redis (Optional)**
+
 - Shared cache across backend instances
 - Same data as Tier 1
 - Longer TTLs (24 hours)

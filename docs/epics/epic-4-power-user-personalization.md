@@ -23,6 +23,7 @@
 **And** importance slider/picker: 1-10 scale (optional, can leave blank)
 **And** confidence slider/picker: 1-10 scale (optional, can leave blank)
 **And** tooltips explain meaning:
+
 - Importance: "How critical is this task?"
 - Confidence: "How confident are you in executing this?"
 
@@ -45,6 +46,7 @@
 **Prerequisites:** Story 2.1 (task API), Story 2.5 (task creation UI)
 
 **Technical Notes:**
+
 - FR15-18 (optional metadata)
 - Database: importance, confidence fields nullable integers (1-10)
 - UI: range sliders or picker dropdowns
@@ -92,6 +94,7 @@
 **Prerequisites:** Story 4.1 (metadata fields exist)
 
 **Technical Notes:**
+
 - FR17 (visual indicators)
 - Design: subtle, professional (not overwhelming)
 - Color-blind accessible: use icons + colors
@@ -138,6 +141,7 @@
 **Prerequisites:** Story 2.5 (quick-add), Story 2.6 (edit), Story 2.7 (completion), Story 2.8 (delete), Story 3.9 (coaching)
 
 **Technical Notes:**
+
 - FR45, FR53 (keyboard shortcuts, desktop emphasis)
 - Library: react-hotkeys-hook or custom implementation
 - OS detection: display Cmd (Mac) vs Ctrl (Windows/Linux)
@@ -174,6 +178,7 @@
 **Prerequisites:** Story 4.3 (keyboard shortcuts exist)
 
 **Technical Notes:**
+
 - FR53 (desktop interface emphasizes shortcuts)
 - Empathy map insight: Alex loves keyboard control
 - Subtle visual hints: gray badges, tooltips
@@ -220,6 +225,7 @@
 **Prerequisites:** Story 2.7 (completion), Story 2.8 (deletion), Story 2.9 (responsive layout)
 
 **Technical Notes:**
+
 - FR46 (mobile swipe gestures)
 - Empathy map insight: Jordan's mobile-first, thumb-driven behavior
 - Library: react-swipeable or custom touch event handlers
@@ -262,6 +268,7 @@
 **Prerequisites:** Story 2.9 (responsive layout), Story 3.2 (goals page exists)
 
 **Technical Notes:**
+
 - FR51 (mobile bottom nav, thumb reach)
 - Empathy map insight: Jordan's thumb-driven navigation
 - Fixed bottom position: z-index high, doesn't overlap content
@@ -304,6 +311,7 @@
 **Prerequisites:** Story 2.9 (responsive layout), Story 4.6 (nav components exist)
 
 **Technical Notes:**
+
 - FR50 (desktop multi-column layout)
 - Empathy map insight: Alex's desktop-optimized workflow
 - Flexbox or CSS Grid for layout
@@ -350,6 +358,7 @@
 **Prerequisites:** Story 3.9 (coaching UI), Story 1.10 (settings page structure)
 
 **Technical Notes:**
+
 - FR24 (enable/disable coaching anytime)
 - Add users.coaching_enabled boolean field to schema
 - Default: true (coaching enabled, user opts out if desired)
@@ -387,6 +396,7 @@
 **Prerequisites:** Story 1.10 (account deletion exists), Story 4.8 (coaching toggle)
 
 **Technical Notes:**
+
 - Centralized settings UI
 - Form sections: collapsible accordions or tabs
 - Change password: same validation as signup (Story 1.8)

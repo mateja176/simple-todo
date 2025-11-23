@@ -36,6 +36,7 @@
 **Prerequisites:** Story 1.5 (auth middleware), Story 1.2 (database schema)
 
 **Technical Notes:**
+
 - FR19-23 (goal management)
 - Schema: goals table per data-architecture.md
 - Upsert pattern: one goals record per user
@@ -58,12 +59,14 @@
 **Then** modal displays: "Help me understand what matters to you" (dismissible, not forced)
 
 **And** 3 conversational prompts displayed:
+
 1. "What matters most to you right now?" (whatMatters)
 2. "What would be your biggest win in the next 3-6 months?" (biggestWin)
 3. "What outcome would you most want to avoid?" (worstOutcome)
 
 **And** text areas for each (not intimidating essay boxes)
 **And** placeholder examples based on detected context:
+
 - Desktop user: business examples ("raise funding", "ship MVP", "avoid runway burn")
 - Mobile user: student/career examples ("land internship", "build portfolio", "avoid wasted effort")
 
@@ -83,6 +86,7 @@
 **Prerequisites:** Story 3.1 (goals API), Story 2.7 (milestone trigger exists)
 
 **Technical Notes:**
+
 - FR19-23 (goal capture, optional, editable)
 - Trigger: after completing first task OR after 5 tasks added (FR38)
 - Conversational prompts: non-judgmental, encouraging
@@ -119,6 +123,7 @@
 **Prerequisites:** Story 3.2 (goals captured), Story 2.1 (tasks exist)
 
 **Technical Notes:**
+
 - FR49, FR54 (persona detection, no explicit selection)
 - Passive collection: no user-visible persona picker
 - Signals stored in persona_signals JSONB field
@@ -150,6 +155,7 @@
 **Given** LLM API call made
 **When** request sent to Anthropic
 **Then** request includes:
+
 - System prompt with persona adaptation instructions
 - User goals as context (if available)
 - Task text being evaluated
@@ -169,6 +175,7 @@
 **Prerequisites:** Story 1.2 (database), Story 3.1 (goals API)
 
 **Technical Notes:**
+
 - @anthropic-ai/sdk package
 - Environment variable: ANTHROPIC_API_KEY
 - Claude Sonnet 4.5: fast, high-quality, cost-effective
@@ -201,6 +208,7 @@
 **Given** coaching request for task
 **When** generating response
 **Then** prompt includes:
+
 - Persona-specific tone: anxiety-framing (founder) vs hope-framing (student)
 - User goals as context: "User's goals: [whatMatters, biggestWin, worstOutcome]"
 - Task text: "User wants to: [taskText]"
@@ -209,6 +217,7 @@
 **Given** coaching completes
 **When** response generated
 **Then** coaching_interactions record created:
+
 - userId, taskId, questionHash (SHA-256 of taskText), response, latency, tokenCount, cost, cacheHit
 
 **And** user.coachingCount incremented
@@ -217,6 +226,7 @@
 **Prerequisites:** Story 3.4 (LLM integration), Story 3.3 (persona detection), Story 3.1 (goals API)
 
 **Technical Notes:**
+
 - Endpoint per api-contracts.md
 - FR25-37 (coaching mechanics)
 - FR29-31 (persona-adapted framing)
@@ -253,6 +263,7 @@
 **Given** Tier 3 LLM call
 **When** response generated
 **Then** response stored in both caches:
+
 - Tier 1 (node-cache): TTL 1 hour, auto-cleanup
 - Tier 2 (database): expiresAt 30 days, hitCount = 1
 
@@ -263,6 +274,7 @@
 **Prerequisites:** Story 3.5 (coaching API)
 
 **Technical Notes:**
+
 - Service blueprint insight: 3-tier caching CRITICAL for <800ms
 - FR36-37 (pre-generated patterns, caching)
 - Tier 1: node-cache (1 hour TTL, 500 entry limit)
@@ -301,6 +313,7 @@
 **Prerequisites:** Story 3.6 (caching infrastructure)
 
 **Technical Notes:**
+
 - FR36 (pre-generated patterns)
 - Seed script: generate patterns during deployment
 - Common patterns identified from competitor analysis, user research
@@ -323,11 +336,13 @@
 **Then** rule-based fallback activated (FR35, FR72)
 
 **And** generic coaching response generated:
+
 - "Consider: Is this aligned with your goals?"
 - "Ask yourself: Will this matter in 3 months?"
 - "What would happen if you skipped this?"
 
 **And** persona-adapted if signals available:
+
 - Founder: "What's the opportunity cost of spending time on this?"
 - Student: "Will this help you 6 months from now?"
 
@@ -344,6 +359,7 @@
 **Prerequisites:** Story 3.5 (coaching API)
 
 **Technical Notes:**
+
 - FR35, FR72-73 (graceful degradation, fallback, rate limits)
 - Rule-based templates: 5-10 generic questions
 - Persona detection still used (if available)
@@ -387,6 +403,7 @@
 **Prerequisites:** Story 3.5 (coaching API), Story 2.4 (task list UI)
 
 **Technical Notes:**
+
 - FR25, FR40 (request coaching, thinking indicator)
 - Desktop: coaching button on task hover
 - Mobile: tap task → action sheet with coaching option
@@ -449,6 +466,7 @@
 **Prerequisites:** Story 3.9 (coaching UI request), Story 3.5 (coaching API)
 
 **Technical Notes:**
+
 - FR32-34 (tone, actions, feedback)
 - Coaching card: modal or inline below task (mobile: bottom sheet)
 - Action buttons: clear affordances, color coding
@@ -489,6 +507,7 @@
 **Prerequisites:** Story 3.9 (coaching UI)
 
 **Technical Notes:**
+
 - FR39 (show example before first use)
 - Empathy map insight: uncertainty about AI must be addressed
 - Example carefully chosen: shows value without overpromising
@@ -534,6 +553,7 @@
 **Prerequisites:** Story 3.11 (coaching example), Story 2.5 (task count tracking)
 
 **Technical Notes:**
+
 - FR38, FR42 (detect 5+ tasks, gentle invitation, dismissible)
 - Trigger: after 5 tasks added + 0 coaching requests
 - Nudge placement: banner at top of task list (non-intrusive)
@@ -579,6 +599,7 @@
 **Prerequisites:** Story 3.3 (persona detection), Story 3.5 (coaching API)
 
 **Technical Notes:**
+
 - FR29-31 (persona adaptation, framing)
 - Empathy map insight: Alex = anxiety-driven, Jordan = hope-driven
 - Prompt templates: separate system prompts per persona

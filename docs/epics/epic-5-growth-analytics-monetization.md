@@ -44,6 +44,7 @@
 **Prerequisites:** Story 3.5 (coaching API), Story 1.2 (database schema)
 
 **Technical Notes:**
+
 - FR56-58 (free tier limit, paid unlimited, tracking)
 - Database fields: users.coachingCount, users.coachingResetAt, users.tier (enum: 'free', 'paid')
 - Reset logic: 30-day rolling window (not calendar month)
@@ -86,6 +87,7 @@
 **Prerequisites:** Story 5.1 (usage tracking), Story 3.10 (coaching UI)
 
 **Technical Notes:**
+
 - FR59 (approaching limit notification)
 - Notification thresholds: 7, 9, 10 uses
 - Calculate days until reset: (coachingResetAt + 30 days) - now
@@ -130,6 +132,7 @@
 **Prerequisites:** Story 5.1 (tier tracking), Story 5.2 (upgrade CTAs exist)
 
 **Technical Notes:**
+
 - FR60 (upgrade anytime)
 - Stripe integration: Stripe Checkout (simplest) or Stripe Elements
 - Webhook handling: POST /api/webhooks/stripe
@@ -173,6 +176,7 @@
 **Prerequisites:** Story 1.10 (settings page), Story 5.5 (privacy opt-outs)
 
 **Technical Notes:**
+
 - FR61 (data export)
 - Export format: JSON (machine-readable, standard)
 - Exclude sensitive fields: passwordHash, internal IDs (use text labels)
@@ -217,6 +221,7 @@
 **Prerequisites:** Story 3.5 (coaching API), Story 4.9 (settings page)
 
 **Technical Notes:**
+
 - FR62 (opt out of coaching logging)
 - Database: users.coaching_logging_enabled boolean (default true)
 - Coaching still functional when disabled (only logging affected)
@@ -239,6 +244,7 @@
 
 **And** link navigates to /privacy-policy page
 **And** policy clearly states:
+
 - Data collected: email, tasks, goals, coaching interactions (if opted in)
 - Data usage: app functionality, coaching quality improvement
 - Data sharing: NOT shared with third parties (FR65)
@@ -265,6 +271,7 @@
 **Prerequisites:** Story 1.10 (account deletion), Story 5.5 (privacy controls)
 
 **Technical Notes:**
+
 - FR63-65 (privacy policy, GDPR deletion, no third-party sharing)
 - Privacy policy: Markdown document, versioned
 - GDPR compliance: consent checkbox on signup, data deletion on account delete
@@ -307,6 +314,7 @@
 **Prerequisites:** Story 3.10 (coaching UI), Story 1.7 (Open Graph tags exist)
 
 **Technical Notes:**
+
 - FR68-69 (share aha moments, Open Graph tags)
 - Share button: optional, not pushy
 - Social platforms: Twitter/X, LinkedIn (professional contexts)
@@ -357,6 +365,7 @@
 **Prerequisites:** Story 1.3 (signup), Story 5.3 (paid tier mechanics)
 
 **Technical Notes:**
+
 - FR70 (referral/viral loop)
 - Referral code: short alphanumeric (6-8 chars), unique per user
 - Generate on user creation: base64(userId) or random string
@@ -380,18 +389,21 @@
 **Then** metrics logged for BMAD validation:
 
 **And** **Iteration Velocity:**
+
 - Story completion time (from started to deployed)
 - Epic completion time
 - Deployment frequency (commits/deploys per week)
 - Bug/rework rate (issues created post-deployment)
 
 **And** **User Metrics (validate product, not just methodology):**
+
 - 2-week retention rate
 - Coaching try rate (% of users who try coaching at least once)
 - Time-to-first-value (signup to first task created)
 - Free-to-paid conversion rate
 
 **And** **Cost Metrics:**
+
 - LLM API cost per user per month (target <$2 per FR/NFR)
 - Cache hit rate (% of coaching requests served from cache)
 - Average coaching latency (P50, P95, P99)
@@ -407,6 +419,7 @@
 **Prerequisites:** Story 1.12 (observability foundation), Story 3.5 (coaching metrics logged)
 
 **Technical Notes:**
+
 - Stakeholder mapping insight: dual success criteria (BMAD + product)
 - Metrics storage: dedicated analytics_events table or external service (Plausible, PostHog)
 - BMAD-specific metrics: track story/epic completion via git commits or manual logging
@@ -453,6 +466,7 @@
 **Prerequisites:** Story 4.9 (settings/UI framework)
 
 **Technical Notes:**
+
 - Stakeholder mapping insight: early adopter feedback loop critical
 - Feedback table: type, message, email, screenshot_url, user_id, createdAt
 - Screenshot: browser screenshot API (if supported) or skip

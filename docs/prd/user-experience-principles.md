@@ -46,6 +46,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 ## Key Interactions
 
 **Creating a Task (Core Flow):**
+
 - **Entry Point:** Always-visible quick add (desktop header, mobile bottom bar)
 - **Input:** Plain text field, no required fields
 - **Optional:** Click "Coach Me" icon to get AI guidance BEFORE creating
@@ -53,6 +54,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 - **Enhancement:** If 5+ tasks added, soft invitation: "Feeling overwhelmed? Try coaching"
 
 **AI Coaching Interaction (Optional Flow):**
+
 - **Trigger:** User clicks coach icon on task OR uses quick-coach on new task
 - **Experience:**
   1. Thinking indicator appears (<300ms)
@@ -65,6 +67,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 - **Exit:** Always easy - close button, or just navigate away
 
 **Goal Capture (One-Time Setup, Optional):**
+
 - **When:** Offered after 3-5 tasks added, or user clicks "Improve coaching"
 - **Experience:**
   1. "Want better coaching? Share your top goals (30 sec)"
@@ -75,6 +78,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 - **Result:** AI references goals in future coaching
 
 **Task Completion:**
+
 - **Action:** Tap/click checkbox or swipe (mobile)
 - **Feedback:** Satisfying animation (subtle, not distracting)
 - **Celebration:** Every 5 completed: "Nice momentum!" (positive, not guilt)
@@ -83,6 +87,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 **Persona-Specific Adaptations:**
 
 **Alex (Founder - Desktop):**
+
 - Keyboard shortcuts prominent (Cmd+K command palette)
 - Multi-column layout shows more context
 - Coaching uses business framing: "opportunity cost," "customer impact"
@@ -90,6 +95,7 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 - Quick add always visible at top
 
 **Jordan (Student - Mobile):**
+
 - Bottom navigation for thumb reach
 - Swipe gestures for quick actions
 - Coaching uses future framing: "Will this matter in 5 years?"
@@ -101,22 +107,26 @@ This isn't another feature-packed productivity app. Design reduces friction, red
 **Tone:** Calm, confident, capable - not anxious or overwhelming
 
 **Color Palette:**
+
 - Primary: Calming blues/teals (clarity, trust)
 - Accent: Warm amber for coaching moments (curiosity, guidance)
 - Background: Soft whites/light grays (breathable space)
 - Avoid: Aggressive reds (guilt), neon brightness (stress)
 
 **Typography:**
+
 - Clean sans-serif (Inter, System UI)
 - Readable sizes (16px minimum body text)
 - Clear hierarchy (task text prominent)
 
 **Space:**
+
 - Generous whitespace (reduce claustrophobia)
 - Comfortable line heights
 - Breathing room between tasks
 
 **Animation:**
+
 - Subtle, purposeful (feedback, not decoration)
 - Fast transitions (120-200ms)
 - Smooth, natural easing

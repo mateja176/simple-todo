@@ -53,6 +53,7 @@
 **Prerequisites:** Story 1.5 (auth middleware exists), Story 1.2 (database schema exists)
 
 **Technical Notes:**
+
 - Endpoints per api-contracts.md
 - FR7-14 (task CRUD operations)
 - Drizzle queries with userId filter (security)
@@ -93,6 +94,7 @@
 **Prerequisites:** Story 2.1 (task API exists), Story 1.6 (auth state exists)
 
 **Technical Notes:**
+
 - TanStack Query for server state caching
 - Optimistic updates pattern
 - Background sync queue (retry logic, exponential backoff)
@@ -130,6 +132,7 @@
 **Prerequisites:** Story 2.2 (task state management exists)
 
 **Technical Notes:**
+
 - Empty state design: friendly, encouraging (not guilt-inducing)
 - Empathy map insight: tool fatigue - must feel simple and inviting
 - Mobile responsive: works at 320px width
@@ -151,6 +154,7 @@
 
 **And** completed tasks section below (collapsible or separate tab)
 **And** visual distinction between active/completed (FR13):
+
 - Active: normal opacity, checkbox empty
 - Completed: reduced opacity or strikethrough, checkbox filled
 
@@ -169,6 +173,7 @@
 **Prerequisites:** Story 2.2 (task state management exists)
 
 **Technical Notes:**
+
 - FR8, FR13 (view tasks, visual distinction)
 - Active tasks priority display
 - Completed tasks: strikethrough + reduced opacity
@@ -217,6 +222,7 @@
 **Prerequisites:** Story 2.2 (task state management exists)
 
 **Technical Notes:**
+
 - FR43 (quick-add always visible)
 - FR7 (create tasks)
 - Sticky positioning (top of viewport) or fixed header
@@ -260,6 +266,7 @@
 **Prerequisites:** Story 2.2 (task state management), Story 2.5 (task display exists)
 
 **Technical Notes:**
+
 - FR9 (edit tasks)
 - Inline editing UX: contentEditable or input field replacement
 - Desktop: click-to-edit
@@ -303,6 +310,7 @@
 **Prerequisites:** Story 2.2 (task state management)
 
 **Technical Notes:**
+
 - FR11, FR12 (mark complete, unmark)
 - FR41 (milestone celebrations)
 - Empathy map insight: celebrate meaningful completion
@@ -345,6 +353,7 @@
 **Prerequisites:** Story 2.2 (task state management)
 
 **Technical Notes:**
+
 - FR10 (delete tasks)
 - Desktop: delete icon/button on hover
 - Mobile: swipe left reveals delete action (FR46 - swipe gestures)
@@ -392,6 +401,7 @@
 **Prerequisites:** Story 2.4 (task list UI exists)
 
 **Technical Notes:**
+
 - FR48, FR50-52 (responsive, desktop/mobile optimization)
 - Empathy map insight: mobile is NOT smaller desktop - distinct patterns
 - Tailwind CSS responsive utilities (sm, md, lg, xl)
@@ -434,6 +444,7 @@
 **Prerequisites:** Story 2.2 (task state management)
 
 **Technical Notes:**
+
 - FR47 (skeleton screens, no blank screens)
 - Skeleton component library or custom CSS
 - Shimmer animation for polish
@@ -481,6 +492,7 @@
 **Prerequisites:** Story 2.2 (task state management)
 
 **Technical Notes:**
+
 - FR74 (background sync)
 - Service blueprint insight: critical for mobile reliability
 - localStorage for queue persistence
@@ -518,6 +530,7 @@
 **Prerequisites:** Story 2.7 (task completion exists)
 
 **Technical Notes:**
+
 - Computed from task list state (TanStack Query)
 - Today/week calculated from completedAt timestamps
 - Empathy map insight: progress visibility reduces anxiety

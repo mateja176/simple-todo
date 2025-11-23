@@ -2,30 +2,33 @@
 
 ## Story Count by Epic
 
-| Epic | Story Count | Primary Focus |
-|------|-------------|---------------|
-| Epic 1 | 12 stories | Foundation, Landing Page, Authentication, Instant Onboarding |
-| Epic 2 | 12 stories | Core Todo CRUD, Mobile/Desktop UX, Responsive Design |
-| Epic 3 | 13 stories | AI Coaching, Goals, Caching, Persona Adaptation, <800ms Latency |
-| Epic 4 | 9 stories | Power User Features, Keyboard Shortcuts, Mobile Gestures |
-| Epic 5 | 10 stories | Freemium, Analytics, Monetization, Viral Growth, BMAD Metrics |
-| **Total** | **56 stories** | Complete MVP coverage |
+| Epic      | Story Count    | Primary Focus                                                   |
+| --------- | -------------- | --------------------------------------------------------------- |
+| Epic 1    | 12 stories     | Foundation, Landing Page, Authentication, Instant Onboarding    |
+| Epic 2    | 12 stories     | Core Todo CRUD, Mobile/Desktop UX, Responsive Design            |
+| Epic 3    | 13 stories     | AI Coaching, Goals, Caching, Persona Adaptation, <800ms Latency |
+| Epic 4    | 9 stories      | Power User Features, Keyboard Shortcuts, Mobile Gestures        |
+| Epic 5    | 10 stories     | Freemium, Analytics, Monetization, Viral Growth, BMAD Metrics   |
+| **Total** | **56 stories** | Complete MVP coverage                                           |
 
 ## Development Sequencing Recommendations
 
 **Sprint 1-2: Epic 1 (Foundation & Instant Value)**
+
 - Critical path: Project setup → Database → Authentication → Landing page
 - Deliverable: User can sign up and see landing page
 - Risk: Infrastructure decisions block all subsequent work
 - Dependencies: None (start here)
 
 **Sprint 3-4: Epic 2 (Core Todo Experience)**
+
 - Critical path: Task CRUD API → Task UI → Quick-add → Responsive layout
 - Deliverable: Fully functional todo app without AI
 - Risk: Building trust before AI introduction
 - Dependencies: Epic 1 complete (auth required)
 
 **Sprint 5-7: Epic 3 (AI Coaching with Context)**
+
 - Critical path: Goals → LLM integration → Multi-tier caching → Coaching UI → Persona adaptation
 - Deliverable: <800ms AI coaching with context
 - Risk: CRITICAL retention moment - must be excellent
@@ -33,12 +36,14 @@
 - Notes: Largest epic (13 stories) reflects <800ms latency complexity
 
 **Sprint 8-9: Epic 4 (Power User & Personalization)**
+
 - Critical path: Metadata → Keyboard shortcuts → Mobile gestures → Adaptive layouts
 - Deliverable: Power user efficiency features
 - Risk: Retention optimization after core value proven
 - Dependencies: Epic 2 complete (baseline UX)
 
 **Sprint 10-11: Epic 5 (Growth, Analytics & Monetization)**
+
 - Critical path: Freemium tracking → Payment integration → Data export → Viral features
 - Deliverable: Sustainable business model + growth mechanics
 - Risk: Monetization after value proven
@@ -47,12 +52,14 @@
 ## Context Availability Summary
 
 **Available Context During Epic Creation:**
+
 - ✅ PRD: Functional requirements (74 FRs), non-functional requirements, product scope
 - ✅ Architecture: Technology stack, data architecture, API contracts, deployment strategy
 - ✅ Advanced Elicitation: Journey mapping, service blueprint, stakeholder mapping, empathy map
 - ⚠️ NOT Available: Existing codebase (greenfield project), team velocity data, production metrics
 
 **Context Applied:**
+
 - Journey mapping: Epic sequencing matches user journey stages (discover → trust → aha → retention → growth)
 - Service blueprint: Backstage requirements (monitoring, caching, fallback) included in stories
 - Stakeholder mapping: BMAD validation metrics (Story 5.9) address methodology stakeholder needs
@@ -103,4 +110,3 @@
 **Author:** BMad
 **Workflow:** BMAD Method - Epic & Story Creation
 **Context:** PRD + Architecture + Advanced Elicitation (Journey Map, Service Blueprint, Stakeholder Map, Empathy Map)
-

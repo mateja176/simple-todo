@@ -5,27 +5,32 @@
 **Core Innovation:** Prevents wrong work from happening through AI coaching that questions whether tasks align with user goals. Unlike traditional productivity apps that optimize execution, this prevents wasted effort.
 
 **Dual Purpose:**
+
 1. **User Product:** Baseline todo app that works perfectly without AI + optional coaching for decision paralysis
 2. **Strategic Product:** BMAD methodology validation before high-stakes fintech projects
 
 **Key Numbers:**
+
 - **74 Functional Requirements** covering baseline app, optional AI coaching, persona adaptation, freemium model
 - **27 Non-Functional Requirements** emphasizing <800ms AI latency, security, accessibility, scalability
 - **2 Target Personas:** Alex (overwhelmed founder, desktop, business framing) + Jordan (overwhelmed student, mobile, future framing)
 - **MVP Timeline:** <6 weeks with mandatory pre-MVP validation (20 interviews + Wizard of Oz + technical spike)
 
 **Critical Constraints:**
+
 - <800ms AI coaching response (hard requirement - latency kills flow)
 - Time-to-first-value <45 seconds (immediate baseline value)
 - Works perfectly without AI (coaching is pure enhancement, never friction)
 - Pre-MVP validation mandatory (kill criteria: <60% positive, can't achieve <800ms, unsustainable costs)
 
 **Success Criteria:**
+
 - **Methodology (Primary):** <6 week MVP, documented patterns, weekly pivots, confidence gained
 - **User Value (Required):** 2-week retention >30%, coaching try >20%, behavioral change evidence
 - **Technical:** <800ms latency, <$2/user/month, graceful degradation
 
 **Next Steps:**
+
 1. Pre-MVP validation (2 weeks): 20 interviews, Wizard of Oz prototype, technical spike
 2. MVP build (4 weeks): Baseline app + AI coaching with caching/fallback
 3. Beta testing: 20-50 users, track metrics, weekly retrospectives

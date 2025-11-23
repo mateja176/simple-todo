@@ -69,6 +69,7 @@
    - Alex likely converts paid, Jordan stays free (both get value)
 
 **MVP Scope Boundaries (What's OUT):**
+
 - Voice/dictation input (V2+)
 - Automatic impact quantification (V2+)
 - Life goals tracking system beyond one-time capture (V2+)
@@ -134,12 +135,12 @@
    - Long-term impact analysis
 
 **Strategic Pivot Options (If Core Hypothesis Fails):**
+
 - B2B team decision-making coaching
 - Fintech decision coaching directly
 - Methodology consulting (sell BMAD, use app as demo)
 - AI tooling for low-latency coaching integration
 
 ---
-
 
 ---

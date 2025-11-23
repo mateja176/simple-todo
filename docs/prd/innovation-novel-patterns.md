@@ -32,6 +32,7 @@ Traditional todo apps optimize execution (task completion speed, organization ef
    - Challenge: Unproven. Technical spike required to validate achievability.
 
 **Innovation Signals from Product Brief:**
+
 - "Nothing like this exists" - AI coaching for priorities, not organization
 - "Rethinking how productivity works" - prevention vs optimization
 - "Novel approach" - Socratic questioning for task validation
@@ -60,17 +61,20 @@ Traditional todo apps optimize execution (task completion speed, organization ef
    - Measure cost per interaction at scale (100 users × 50/day)
 
 **Kill Criteria (Stop Before Building):**
+
 - <60% positive on AI coaching concept in interviews
 - Wizard of Oz testing shows coaching adds friction
 - Cannot achieve <800ms in technical spike
 - Cost modeling shows unsustainable economics
 
 **MVP Testing (4 weeks):**
+
 - Deploy to 20-50 early users
 - Track: time-to-first-value, coaching try rate, completion rate, 2-week retention
 - Weekly retrospectives: What's working? What transfers to fintech?
 
 **Pivot Triggers:**
+
 - Time-to-first-value >45 seconds after 2 weeks optimization
 - Coaching try rate <20% after 1 month
 - Retention <30% at 2 weeks despite iterations
