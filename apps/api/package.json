@@ -3,10 +3,10 @@
   "type": "module",
   "scripts": {
     "dev": "node --env-file=.env --watch  src/index.ts",
-    "build": "tsc",
+    "build": "tsgo",
     "start": "node --env-file=.env  src/index.ts",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsgo --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -32,8 +32,8 @@
     "@types/bcryptjs": "^3.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.18.13",
+    "@typescript/native-preview": "7.0.0-dev.20251123.1",
     "drizzle-kit": "^0.31.7",
-    "typescript": "^5.8.3",
     "vitest": "^4.0.13"
   }
 }

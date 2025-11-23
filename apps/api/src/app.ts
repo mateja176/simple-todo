@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import auth from './routes/auth.ts'
 
-const app = new Hono()
+const app: Hono = new Hono()
 
 app.route('/api/auth', auth)
 

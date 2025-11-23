@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsgo --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test"
   },
@@ -27,12 +27,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript/native-preview": "7.0.0-dev.20251123.1",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "happy-dom": "^20.0.10",
     "tailwindcss": "4.1.17",
-    "typescript": "5.9.3",
     "vitest": "^4.0.13"
   }
 }

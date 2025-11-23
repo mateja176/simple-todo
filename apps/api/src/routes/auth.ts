@@ -8,7 +8,7 @@ import { refreshTokens, users } from '../db/schema/index.ts'
 import { generateTokens, hashPassword, verifyPassword } from '../lib/auth.ts'
 import { loginRateLimiter } from '../middleware/rate-limit.ts'
 
-const auth = new Hono()
+const auth: Hono = new Hono()
 
 auth.post('/signup', zValidator('json', signupSchema), async (c) => {
   const { email, password } = c.req.valid('json')

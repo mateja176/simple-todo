@@ -8,7 +8,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "lint": "eslint .",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsgo --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
@@ -17,8 +17,8 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@typescript/native-preview": "7.0.0-dev.20251123.1",
     "eslint": "^9.0.0",
-    "typescript": "^5.0.0",
     "vitest": "^4.0.13"
   }
 }
