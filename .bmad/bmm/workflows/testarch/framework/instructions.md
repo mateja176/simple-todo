@@ -186,7 +186,7 @@ Initialize a production-ready test framework architecture (Playwright or Cypress
    Create `.nvmrc`:
 
    ```
-   20.11.0
+   22.18.0
    ```
 
    (Use Node version from existing `.nvmrc` or default to current LTS)

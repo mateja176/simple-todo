@@ -22,7 +22,7 @@
 
 **Key Technology Versions:**
 
-- Node.js: 20.19+ (required by Vite 7)
+- Node.js: ^22.18.0 (required by Vite 7)
 - TypeScript: 5.7+
 - React: 19+ (Next.js 16 compatible)
 - PostgreSQL: 17.7

@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js 20.19+
+- Node.js ^22.18.0
 - pnpm 9.15+
 - PostgreSQL 17 (local or Docker)
 
