@@ -33,7 +33,7 @@
 - Monorepo structure per ADR-001 (architecture/architecture-decision-records.md)
 - Turborepo 2.3+ for build orchestration
 - pnpm 9.15+ workspaces
-- Shared packages: @repo/types, @repo/validation, @repo/typescript-config, @repo/eslint-config
+  lint-config Shared packages: @repo/types, @repo/validation, @repo/typescript-config, @repo/eslint-config
 - Initialize Next.js 16.0.3 (apps/web), Hono 4.10+ (apps/api)
 - Setup Vitest for unit tests, Playwright for E2E
 - CI/CD placeholder (GitHub Actions basic setup)

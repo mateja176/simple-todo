@@ -18,7 +18,7 @@
   - [ ] Create pnpm workspace at project root
   - [ ] Setup apps/web (Next.js 16.0.3)
   - [ ] Setup apps/api (Hono 4.10+)
-  - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+lint-config - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
 - [ ] Configure build system (AC: 2)
   - [ ] Install and configure Turborepo 2.3+
   - [ ] Setup turbo.json with pipeline dependencies
@@ -29,7 +29,7 @@
   - [ ] Enable strict mode, noImplicitAny, strictNullChecks
   - [ ] Verify no type errors across all packages
 - [ ] Configure linting and formatting (AC: 5)
-  - [ ] Setup ESLint base config in packages/eslint-config
+lint-config - [ ] Setup ESLint base config in packages/eslint-config
   - [ ] Configure Prettier with consistent rules
   - [ ] Add lint scripts to all packages
   - [ ] Verify lint passes across all packages
@@ -79,7 +79,7 @@
         <path>docs/architecture/project-structure.md</path>
         <title>Project Structure</title>
         <section>Full directory tree</section>
-        <snippet>Complete monorepo layout: apps/web (Next.js), apps/api (Hono), packages/types, packages/validation, packages/typescript-config, packages/eslint-config. Shows expected file paths for all modules.</snippet>
+        <snippet>Complete monorepo layout: apps/web (Next.js), apps/api (Hono), packages/types, packages/validation, packages/typescript-config, packages/lint-config. Shows expected file paths for all modules.</snippet>
       </doc>
       <doc>
         <path>docs/architecture/architecture-decision-records.md</path>
@@ -125,7 +125,7 @@
     <constraint>Git hooks must block commits with lint/type errors (husky pre-commit)</constraint>
     <constraint>Use exact versions specified: Next.js 16.0.3, Hono 4.10+, Turborepo 2.3+, pnpm 9.15+</constraint>
     <constraint>Monorepo structure must match docs/architecture/project-structure.md exactly</constraint>
-    <constraint>Shared packages must follow naming: @repo/types, @repo/validation, @repo/typescript-config, @repo/eslint-config</constraint>
+    <constraint>Shared packages must follow naming: @repo/types, @repo/validation, @repo/typescript-config, @repo/lint-config</constraint>
     <constraint>ESLint and Prettier must have consistent rules across all packages</constraint>
     <constraint>CI/CD placeholder only - full deployment in Story 1.11</constraint>
   </constraints>
@@ -151,8 +151,8 @@
     <interface>
       <name>ESLint base config</name>
       <kind>config</kind>
-      <signature>Shared ESLint rules in packages/eslint-config</signature>
-      <path>packages/eslint-config/index.js</path>
+      <signature>Shared ESLint rules in packages/lint-config</signature>
+      <path>packages/lint-config/index.js</path>
     </interface>
   </interfaces>
   <tests>

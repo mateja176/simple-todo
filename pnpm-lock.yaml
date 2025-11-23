@@ -54,9 +54,9 @@ importers:
       '@faker-js/faker':
         specifier: ^10.1.0
         version: 10.1.0
-      '@repo/eslint-config':
+      '@repo/lint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../packages/lint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -94,9 +94,9 @@ importers:
       '@playwright/test':
         specifier: ^1.56.1
         version: 1.56.1
-      '@repo/eslint-config':
+      '@repo/lint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../packages/lint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -143,7 +143,7 @@ importers:
         specifier: ^4.0.13
         version: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.25)(happy-dom@20.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6)(yaml@2.8.1)
 
-  packages/eslint-config:
+  packages/lint-config:
     dependencies:
       eslint:
         specifier: ^9.0.0
@@ -160,9 +160,9 @@ importers:
 
   packages/types:
     devDependencies:
-      '@repo/eslint-config':
+      '@repo/lint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../lint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -184,9 +184,9 @@ importers:
         specifier: ^3.0.0
         version: 3.25.76
     devDependencies:
-      '@repo/eslint-config':
+      '@repo/lint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../lint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

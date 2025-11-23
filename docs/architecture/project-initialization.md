@@ -11,7 +11,7 @@ pnpm init
 pnpm add -D turbo @typescript/native-preview
 
 # Create workspace structure
-mkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
+lint-configkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
 ```
 
 **Frontend (Next.js 16.0.3 App Router):**

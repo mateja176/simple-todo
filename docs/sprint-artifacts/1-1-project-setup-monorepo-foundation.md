@@ -23,7 +23,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
   - [x] Create pnpm workspace at project root
   - [x] Setup apps/web (Next.js 16.0.3)
   - [x] Setup apps/api (Hono 4.10+)
-  - [x] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+        lint-config - [x] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
 - [x] Configure build system (AC: 2)
   - [x] Install and configure Turborepo 2.3+
   - [x] Setup turbo.json with pipeline dependencies
@@ -34,7 +34,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
   - [x] Enable strict mode, noImplicitAny, strictNullChecks
   - [x] Verify no type errors across all packages
 - [x] Configure linting and formatting (AC: 5)
-  - [x] Setup ESLint base config in packages/eslint-config
+      lint-config - [x] Setup ESLint base config in packages/eslint-config
   - [x] Configure Prettier with consistent rules
   - [x] Add lint scripts to all packages
   - [x] Verify lint passes across all packages
@@ -84,7 +84,7 @@ simple-todo/
 │   ├── types/        # Shared TypeScript types
 │   ├── validation/   # Zod schemas
 │   ├── typescript-config/  # Base tsconfig
-│   └── eslint-config/      # ESLint rules
+│   └── lint-config/      # ESLint rules
 ├── turbo.json
 ├── pnpm-workspace.yaml
 └── package.json
@@ -145,7 +145,7 @@ Gemini 3 Pro (Preview)
 
 - Initialized monorepo with Turborepo, pnpm workspaces.
 - Setup `apps/web` (Next.js) and `apps/api` (Hono).
-- Created shared packages: `types`, `validation`, `typescript-config`, `eslint-config`.
+- Created shared packages: `types`, `validation`, `typescript-config`, `lint-config`.
 - Configured TypeScript strict mode and ESLint/Prettier.
 - Setup Husky pre-commit hook (lint + type check).
 - Setup Vitest for unit tests and Playwright for E2E.
@@ -185,8 +185,8 @@ Gemini 3 Pro (Preview)
 - packages/validation/src/index.ts
 - packages/typescript-config/package.json
 - packages/typescript-config/base.json
-- packages/eslint-config/package.json
-- packages/eslint-config/index.js
+- packages/lint-config/package.json
+- packages/lint-config/index.js
 
 ## Senior Developer Review (AI)
 

@@ -131,7 +131,7 @@
 - Consistent compiler options
 - Composable extends
 
-**@repo/eslint-config**
+**@repo/lint-config**
 
 - Shared linting rules
 - TypeScript + React rules

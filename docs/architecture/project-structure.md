@@ -84,7 +84,7 @@ simple-todo/                                 # Monorepo root
 │   │   ├── base.json
 │   │   ├── nextjs.json
 │   │   └── node.json
-│   ├── eslint-config/
+│   ├── lint-config/
 │   │   └── index.js
 │   ├── types/                              # Shared types
 │   │   ├── src/

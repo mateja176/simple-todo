@@ -1,3 +1,3 @@
-import { config } from "@repo/eslint-config";
+import { config } from "@repo/lint-config";
 
 export default config;

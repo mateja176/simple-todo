@@ -50,4 +50,4 @@ This will start:
 - `packages/types`: Shared TypeScript types
 - `packages/validation`: Shared Zod schemas
 - `packages/typescript-config`: Shared TS config
-- `packages/eslint-config`: Shared ESLint config
+- `packages/lint-config`: Shared ESLint config

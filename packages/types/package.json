@@ -13,7 +13,7 @@
     "test": "echo 'no tests'"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
+    "@repo/lint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@typescript/native-preview": "7.0.0-dev.20251123.1",
     "eslint": "^9.0.0",
