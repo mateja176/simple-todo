@@ -20,7 +20,9 @@ export const verifyPassword = async (password: string, hash: string): Promise<bo
 }
 
 export const generateTokens = (userId: string) => {
-  const accessToken = jwt.sign({ userId }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRY })
+  const accessToken = jwt.sign({ userId }, JWT_SECRET, {
+    expiresIn: ACCESS_TOKEN_EXPIRY,
+  })
   const refreshToken = jwt.sign({ userId, type: 'refresh' }, JWT_SECRET, {
     expiresIn: REFRESH_TOKEN_EXPIRY,
   })
@@ -30,7 +32,7 @@ export const generateTokens = (userId: string) => {
 export const verifyToken = (token: string) => {
   try {
     return jwt.verify(token, JWT_SECRET) as jwt.JwtPayload
-  } catch (_error) {
+  } catch {
     return null
   }
 }

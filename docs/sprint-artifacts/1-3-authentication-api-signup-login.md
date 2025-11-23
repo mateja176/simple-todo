@@ -1,6 +1,6 @@
 # Story 1.3: Authentication API - Signup & Login
 
-Status: review
+Status: done
 
 ## Story
 
