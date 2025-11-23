@@ -8,7 +8,7 @@ mkdir simple-todo && cd simple-todo
 pnpm init
 
 # Install monorepo tools
-pnpm add -D turbo typescript
+pnpm add -D turbo @typescript/native-preview
 
 # Create workspace structure
 mkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
@@ -19,6 +19,10 @@ mkdir -p apps/web apps/api packages/types packages/validation packages/typescrip
 ```bash
 cd apps
 npx create-next-app@latest web --typescript --tailwind --app --eslint --src-dir --import-alias "@/*"
+# Replace typescript with native preview
+cd web
+pnpm remove typescript
+pnpm add -D @typescript/native-preview
 ```
 
 **Backend (Hono):**
@@ -27,7 +31,7 @@ npx create-next-app@latest web --typescript --tailwind --app --eslint --src-dir 
 cd apps/api
 pnpm init
 pnpm add hono @hono/node-server zod
-pnpm add -D typescript @types/node tsx nodemon drizzle-orm drizzle-kit postgres
+pnpm add -D @typescript/native-preview @types/node tsx nodemon drizzle-orm drizzle-kit postgres
 pnpm add -D @anthropic-ai/sdk node-cache pino bcrypt jsonwebtoken
 ```
 
@@ -37,13 +41,13 @@ pnpm add -D @anthropic-ai/sdk node-cache pino bcrypt jsonwebtoken
 # Types package
 cd packages/types
 pnpm init
-pnpm add -D typescript
+pnpm add -D @typescript/native-preview
 
 # Validation package
 cd packages/validation
 pnpm init
 pnpm add zod
-pnpm add -D typescript
+pnpm add -D @typescript/native-preview
 ```
 
 **Configuration Files:**

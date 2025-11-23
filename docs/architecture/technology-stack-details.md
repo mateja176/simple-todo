@@ -139,6 +139,12 @@
 
 ## Development Tools
 
+**@typescript/native-preview**
+
+- Native Go-based implementation of TypeScript
+- Significantly faster compilation and type checking
+- Drop-in replacement for standard TypeScript
+
 **Turborepo 2.3+**
 
 - Monorepo build orchestration
