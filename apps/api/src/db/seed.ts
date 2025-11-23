@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { randomUUID } from "crypto";
-import { db } from "./index.js";
-import { tasks, users } from "./schema/index.js";
+import { db } from "./index.ts";
+import { tasks, users } from "./schema/index.ts";
 
 async function seed() {
   console.log("Seeding database...");

@@ -1,12 +1,12 @@
-import { Hono } from "hono";
-import auth from "./routes/auth.js";
+import { Hono } from 'hono'
+import auth from './routes/auth.ts'
 
-const app = new Hono();
+const app = new Hono()
 
-app.route("/api/auth", auth);
+app.route('/api/auth', auth)
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+app.get('/', (c) => {
+  return c.text('Hello Hono!')
+})
 
-export default app;
+export default app

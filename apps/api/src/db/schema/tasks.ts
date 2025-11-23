@@ -6,7 +6,7 @@ import {
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
-import { users } from "./users.js";
+import { users } from "./users.ts";
 
 export const tasks = pgTable(
   "tasks",

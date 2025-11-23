@@ -9,4 +9,4 @@ export const taskSchema = z.object({
 
 export type Task = z.infer<typeof taskSchema>
 
-export * from './auth.js'
+export * from './auth.ts'
