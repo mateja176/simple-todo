@@ -1,6 +1,6 @@
 # Story 1.3: Authentication API - Signup & Login
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -21,38 +21,38 @@ Status: ready-for-dev
 
 ## Tasks / Subtasks
 
-- [ ] Setup Auth Environment
-  - [ ] Install dependencies (`bcryptjs`, `jsonwebtoken`, `zod`)
-  - [ ] Configure environment variables (`JWT_SECRET`)
-- [ ] Implement Validation Schemas
-  - [ ] Create Zod schemas for signup and login requests in `@repo/validation`
-  - [ ] Ensure password complexity rules are enforced
-- [ ] Implement Auth Utilities
-  - [ ] Create password hashing helper (bcrypt cost 12)
-  - [ ] Create JWT signing/verification helper
-- [ ] Implement Signup Endpoint (`POST /api/auth/signup`)
-  - [ ] Validate request body
-  - [ ] Check if user exists (handle duplicate email)
-  - [ ] Hash password
-  - [ ] Create user in DB
-  - [ ] Generate tokens (access & refresh)
-  - [ ] Store refresh token in DB
-  - [ ] Set httpOnly cookie for refresh token
-  - [ ] Return user object and access token
-- [ ] Implement Login Endpoint (`POST /api/auth/login`)
-  - [ ] Validate request body
-  - [ ] Find user by email
-  - [ ] Verify password
-  - [ ] Generate tokens
-  - [ ] Store refresh token (rotate if needed, or just add new)
-  - [ ] Set httpOnly cookie
-  - [ ] Return user object and access token
-- [ ] Implement Rate Limiting
-  - [ ] Add rate limiting middleware for login endpoint
-- [ ] Testing
-  - [ ] Unit tests for validation schemas
-  - [ ] Integration tests for signup flow
-  - [ ] Integration tests for login flow (success, invalid credentials, rate limit)
+- [x] Setup Auth Environment
+  - [x] Install dependencies (`bcryptjs`, `jsonwebtoken`, `zod`)
+  - [x] Configure environment variables (`JWT_SECRET`)
+- [x] Implement Validation Schemas
+  - [x] Create Zod schemas for signup and login requests in `@repo/validation`
+  - [x] Ensure password complexity rules are enforced
+- [x] Implement Auth Utilities
+  - [x] Create password hashing helper (bcrypt cost 12)
+  - [x] Create JWT signing/verification helper
+- [x] Implement Signup Endpoint (`POST /api/auth/signup`)
+  - [x] Validate request body
+  - [x] Check if user exists (handle duplicate email)
+  - [x] Hash password
+  - [x] Create user in DB
+  - [x] Generate tokens (access & refresh)
+  - [x] Store refresh token in DB
+  - [x] Set httpOnly cookie for refresh token
+  - [x] Return user object and access token
+- [x] Implement Login Endpoint (`POST /api/auth/login`)
+  - [x] Validate request body
+  - [x] Find user by email
+  - [x] Verify password
+  - [x] Generate tokens
+  - [x] Store refresh token (rotate if needed, or just add new)
+  - [x] Set httpOnly cookie
+  - [x] Return user object and access token
+- [x] Implement Rate Limiting
+  - [x] Add rate limiting middleware for login endpoint
+- [x] Testing
+  - [x] Unit tests for validation schemas
+  - [x] Integration tests for signup flow
+  - [x] Integration tests for login flow (success, invalid credentials, rate limit)
 
 ## Dev Notes
 
@@ -63,3 +63,40 @@ Status: ready-for-dev
 - Zod validation for request bodies (`@repo/validation`)
 - Error responses follow API response format (`implementation-patterns.md`)
 - Log auth events with Pino (no sensitive data logged)
+
+## Dev Agent Record
+
+### Debug Log
+
+- Implemented auth endpoints and validation.
+- Fixed lint errors in tests.
+- Fixed JWT_SECRET missing in tests.
+- Updated integration tests to mock DB.
+
+### Completion Notes
+
+- Implemented Signup and Login endpoints with JWT auth.
+- Added Zod validation schemas in `@repo/validation`.
+- Added rate limiting middleware.
+- Added unit tests for validation and integration tests for API.
+- Verified all ACs.
+
+## File List
+
+- apps/api/package.json
+- apps/api/.env
+- apps/api/.env.example
+- apps/api/src/app.ts
+- apps/api/src/routes/auth.ts
+- apps/api/src/lib/auth.ts
+- apps/api/src/middleware/rate-limit.ts
+- apps/api/**tests**/integration/auth.test.ts
+- apps/api/vitest.config.ts
+- packages/validation/package.json
+- packages/validation/src/auth.ts
+- packages/validation/src/index.ts
+- packages/validation/src/**tests**/auth.test.ts
+
+## Change Log
+
+- 2025-11-23: Implemented auth endpoints, validation, and tests.

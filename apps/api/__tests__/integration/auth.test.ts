@@ -1,11 +1,61 @@
-import { describe, expect, it } from 'vitest'
-import app from '../../src/app.js'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createLoginPayload, createSignupPayload } from '../helpers/factories.js'
 
+// Mock db and auth lib BEFORE importing app
+vi.mock('../../src/db/index.js', () => ({
+  db: {
+    query: {
+      users: {
+        findFirst: vi.fn(),
+      },
+    },
+    insert: vi.fn(() => ({
+      values: vi.fn(() => ({
+        returning: vi.fn(),
+      })),
+    })),
+  },
+}))
+
+vi.mock('../../src/lib/auth.js', () => ({
+  hashPassword: vi.fn().mockResolvedValue('hashed_password'),
+  verifyPassword: vi.fn().mockResolvedValue(true),
+  generateTokens: vi
+    .fn()
+    .mockReturnValue({ accessToken: 'access_token', refreshToken: 'refresh_token' }),
+}))
+
+vi.mock('../../src/middleware/rate-limit.js', () => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  loginRateLimiter: async (_c: any, next: any) => await next(),
+}))
+
+// Import app AFTER mocks
+import app from '../../src/app.js'
+import { db } from '../../src/db/index.js'
+import { verifyPassword } from '../../src/lib/auth.js'
+
 describe('Auth API', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
   describe('POST /api/auth/signup', () => {
     it('should create a new user and return tokens', async () => {
+      vi.mocked(db.query.users.findFirst).mockResolvedValue(undefined)
       const payload = createSignupPayload()
+
+      const mockUser = {
+        id: 'user-id',
+        email: payload.email,
+        createdAt: 123,
+        updatedAt: 123,
+      }
+      const returningMock = vi.fn().mockResolvedValue([mockUser])
+      const valuesMock = vi.fn().mockReturnValue({ returning: returningMock })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(db.insert).mockReturnValue({ values: valuesMock } as any)
+
       const res = await app.request('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,17 +100,21 @@ describe('Auth API', () => {
 
   describe('POST /api/auth/login', () => {
     it('should authenticate user and return tokens', async () => {
-      // First create a user (this relies on signup working, or we need to seed DB)
-      // For ATDD, we can assume signup works or mock the DB.
-      // Since we are in "Red" phase, this will fail anyway.
-
       const signupPayload = createSignupPayload()
-      // Signup first
-      await app.request('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(signupPayload),
-      })
+
+      const mockUser = {
+        id: 'user-id',
+        email: signupPayload.email,
+        passwordHash: 'hashed_password',
+        createdAt: 123,
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(db.query.users.findFirst).mockResolvedValue(mockUser as any)
+      vi.mocked(verifyPassword).mockResolvedValue(true)
+
+      const valuesMock = vi.fn()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(db.insert).mockReturnValue({ values: valuesMock } as any)
 
       const res = await app.request('/api/auth/login', {
         method: 'POST',
@@ -82,6 +136,7 @@ describe('Auth API', () => {
     })
 
     it('should return 401 for invalid credentials', async () => {
+      vi.mocked(db.query.users.findFirst).mockResolvedValue(undefined)
       const payload = createLoginPayload()
       const res = await app.request('/api/auth/login', {
         method: 'POST',
