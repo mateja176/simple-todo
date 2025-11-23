@@ -1,0 +1,99 @@
+<context>
+  <story>
+    <id>1.3</id>
+    <title>Authentication API - Signup &amp; Login</title>
+    <description>
+      As a user, I want to create an account and log in with email/password,
+      So that my tasks are private and persisted.
+    </description>
+    <acceptance_criteria>
+      <criterion>Given valid email and password (8+ chars, 1 uppercase, 1 number, 1 special), when POST /api/auth/signup, then user created in database with bcrypt hash (cost factor 12)</criterion>
+      <criterion>JWT access token returned (24h expiry, HS256)</criterion>
+      <criterion>Refresh token set in httpOnly cookie (30d expiry)</criterion>
+      <criterion>User object returned (id, email, createdAt)</criterion>
+      <criterion>Response time &lt;200ms (P95)</criterion>
+      <criterion>Given existing user credentials, when POST /api/auth/login, then user authenticated, tokens issued same as signup</criterion>
+      <criterion>Invalid credentials return 401 with generic error (don't leak user existence)</criterion>
+      <criterion>Rate limited to 5 login attempts per IP per hour (prevent brute force)</criterion>
+    </acceptance_criteria>
+  </story>
+
+  <technical_context>
+    <api_contracts>
+      <endpoint>
+        <method>POST</method>
+        <path>/api/auth/signup</path>
+        <request_body>
+          {
+            "email": "alex@example.com",
+            "password": "SecurePass123!"
+          }
+        </request_body>
+        <response_success>
+          {
+            "success": true,
+            "data": {
+              "user": {
+                "id": "uuid",
+                "email": "alex@example.com",
+                "createdAt": 1732186200
+              },
+              "accessToken": "jwt-token"
+            }
+          }
+        </response_success>
+        <cookies>
+          <cookie name="refreshToken" httpOnly="true" secure="true" sameSite="strict" />
+        </cookies>
+      </endpoint>
+      <endpoint>
+        <method>POST</method>
+        <path>/api/auth/login</path>
+        <request_body>
+          {
+            "email": "alex@example.com",
+            "password": "SecurePass123!"
+          }
+        </request_body>
+        <response_success>
+          {
+            "success": true,
+            "data": {
+              "user": {
+                "id": "uuid",
+                "email": "alex@example.com"
+              },
+              "accessToken": "jwt-token"
+            }
+          }
+        </response_success>
+        <cookies>
+          <cookie name="refreshToken" httpOnly="true" secure="true" sameSite="strict" />
+        </cookies>
+      </endpoint>
+    </api_contracts>
+
+    <security>
+      <password_hashing>
+        <algorithm>bcrypt</algorithm>
+        <cost_factor>12</cost_factor>
+      </password_hashing>
+      <jwt>
+        <algorithm>HS256</algorithm>
+        <access_token_expiry>24h</access_token_expiry>
+        <refresh_token_expiry>30d</refresh_token_expiry>
+        <secret_env_var>JWT_SECRET</secret_env_var>
+      </jwt>
+    </security>
+
+    <validation>
+      <library>Zod</library>
+      <password_rules>
+        - Min length: 8
+        - At least 1 uppercase
+        - At least 1 number
+        - At least 1 special character
+      </password_rules>
+    </validation>
+  </technical_context>
+</context>
