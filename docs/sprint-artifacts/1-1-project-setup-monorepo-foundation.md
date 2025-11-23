@@ -23,7 +23,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
   - [x] Create pnpm workspace at project root
   - [x] Setup apps/web (Next.js 16.0.3)
   - [x] Setup apps/api (Hono 4.10+)
-        lint-config - [x] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+        lint-config - [x] Create packages/types, packages/validation, packages/typescript-config, packages/lint-config
 - [x] Configure build system (AC: 2)
   - [x] Install and configure Turborepo 2.3+
   - [x] Setup turbo.json with pipeline dependencies
@@ -34,7 +34,7 @@ so that **all subsequent stories can be developed and deployed rapidly**.
   - [x] Enable strict mode, noImplicitAny, strictNullChecks
   - [x] Verify no type errors across all packages
 - [x] Configure linting and formatting (AC: 5)
-      lint-config - [x] Setup ESLint base config in packages/eslint-config
+      lint-config - [x] Setup ESLint base config in packages/lint-config
   - [x] Configure Prettier with consistent rules
   - [x] Add lint scripts to all packages
   - [x] Verify lint passes across all packages
@@ -131,7 +131,7 @@ Gemini 3 Pro (Preview)
 
 ### Debug Log References
 
-- Fixed `apps/web` linting issue by using `eslint .` instead of `next lint`.
+- Fixed `apps/web` linting issue by using `oxlint .` instead of `next lint`.
 - Fixed `apps/api` type check issue by overriding `moduleResolution` to `NodeNext`.
 - Fixed `apps/web` type check issue by adding `exports` to `packages/typescript-config`.
 - Added `test` task to `turbo.json` which was missing.
@@ -172,16 +172,16 @@ Gemini 3 Pro (Preview)
 - apps/web/playwright.config.ts
 - apps/api/package.json
 - apps/api/tsconfig.json
-- apps/api/eslint.config.js
+- apps/api/.oxlintrc.json
 - apps/api/vitest.config.ts
 - apps/api/**tests**/example.test.ts
 - packages/types/package.json
 - packages/types/tsconfig.json
-- packages/types/eslint.config.js
+- packages/types/.oxlintrc.json
 - packages/types/src/index.ts
 - packages/validation/package.json
 - packages/validation/tsconfig.json
-- packages/validation/eslint.config.js
+- packages/validation/.oxlintrc.json
 - packages/validation/src/index.ts
 - packages/typescript-config/package.json
 - packages/typescript-config/base.json
@@ -229,7 +229,7 @@ The project setup is solid. All critical defects from the previous review have b
 | Initialize monorepo structure    | [x]       | **VERIFIED** | Files exist                                |
 | Configure build system           | [x]       | **VERIFIED** | `turbo.json`                               |
 | Configure TypeScript             | [x]       | **VERIFIED** | `tsconfig.json` files                      |
-| Configure linting and formatting | [x]       | **VERIFIED** | `eslint.config.js` files                   |
+| Configure linting and formatting | [x]       | **VERIFIED** | `.oxlintrc.json` files                     |
 | Setup git hooks                  | [x]       | **VERIFIED** | `.husky` folder                            |
 | Setup testing frameworks         | [x]       | **VERIFIED** | `vitest.config.ts`, `playwright.config.ts` |
 | Initialize CI/CD placeholder     | [x]       | **VERIFIED** | `.github/workflows/ci.yml`                 |

@@ -30,7 +30,6 @@ vi.mock("../../src/lib/auth.js", () => ({
 }));
 
 vi.mock("../../src/middleware/rate-limit.js", () => ({
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   loginRateLimiter: async (_c: any, next: any) => await next(),
 }));
 
@@ -57,7 +56,6 @@ describe("Auth API", () => {
       };
       const returningMock = vi.fn().mockResolvedValue([mockUser]);
       const valuesMock = vi.fn().mockReturnValue({ returning: returningMock });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(db.insert).mockReturnValue({ values: valuesMock } as any);
 
       const res = await app.request("/api/auth/signup", {
@@ -112,12 +110,10 @@ describe("Auth API", () => {
         passwordHash: "hashed_password",
         createdAt: 123,
       };
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(db.query.users.findFirst).mockResolvedValue(mockUser as any);
       vi.mocked(verifyPassword).mockResolvedValue(true);
 
       const valuesMock = vi.fn();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(db.insert).mockReturnValue({ values: valuesMock } as any);
 
       const res = await app.request("/api/auth/login", {

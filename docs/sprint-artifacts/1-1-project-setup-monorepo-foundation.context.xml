@@ -18,7 +18,7 @@
   - [ ] Create pnpm workspace at project root
   - [ ] Setup apps/web (Next.js 16.0.3)
   - [ ] Setup apps/api (Hono 4.10+)
-lint-config - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/eslint-config
+lint-config - [ ] Create packages/types, packages/validation, packages/typescript-config, packages/lint-config
 - [ ] Configure build system (AC: 2)
   - [ ] Install and configure Turborepo 2.3+
   - [ ] Setup turbo.json with pipeline dependencies
@@ -29,7 +29,7 @@ lint-config - [ ] Create packages/types, packages/validation, packages/typescrip
   - [ ] Enable strict mode, noImplicitAny, strictNullChecks
   - [ ] Verify no type errors across all packages
 - [ ] Configure linting and formatting (AC: 5)
-lint-config - [ ] Setup ESLint base config in packages/eslint-config
+lint-config - [ ] Setup ESLint base config in packages/lint-config
   - [ ] Configure Prettier with consistent rules
   - [ ] Add lint scripts to all packages
   - [ ] Verify lint passes across all packages
@@ -112,7 +112,7 @@ lint-config - [ ] Setup ESLint base config in packages/eslint-config
         <dependency name="hono" version="4.10+" />
         <dependency name="vitest" version="2.x" />
         <dependency name="playwright" version="latest" />
-        <dependency name="eslint" version="latest" />
+        <dependency name="oxlint" version="latest" />
         <dependency name="prettier" version="latest" />
         <dependency name="husky" version="latest" />
       </node>
@@ -167,7 +167,7 @@ lint-config - [ ] Setup ESLint base config in packages/eslint-config
       <idea ac="2">Test: Run build twice, measure second build time, assert near-instant (&lt;5s)</idea>
       <idea ac="3">Test: Verify directory structure matches architecture doc (apps/web, apps/api, packages/*)</idea>
       <idea ac="4">Test: Check all tsconfig.json files extend base config and have strict:true</idea>
-      <idea ac="5">Test: Run eslint and prettier across all packages, verify consistent formatting</idea>
+      <idea ac="5">Test: Run oxlint and prettier across all packages, verify consistent formatting</idea>
       <idea ac="6">Test: Make intentional lint error, attempt commit, verify hook blocks it</idea>
       <idea>Integration test: Vitest example test runs successfully</idea>
       <idea>Integration test: Playwright example E2E test runs successfully</idea>

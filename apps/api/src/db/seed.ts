@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { randomUUID } from "crypto";
 import { db } from "./index.ts";
 import { tasks, users } from "./schema/index.ts";

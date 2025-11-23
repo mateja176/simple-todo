@@ -7,19 +7,19 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "oxlint -c .oxlintrc.json",
     "check-format": "prettier --check .",
     "check-types": "tsgo --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
+    "oxlint": "^1.29.0",
     "zod": "^3.0.0"
   },
   "devDependencies": {
     "@repo/lint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@typescript/native-preview": "7.0.0-dev.20251123.1",
-    "eslint": "^9.0.0",
     "vitest": "^4.0.13"
   }
 }

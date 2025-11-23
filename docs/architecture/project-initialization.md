@@ -11,14 +11,14 @@ pnpm init
 pnpm add -D turbo @typescript/native-preview
 
 # Create workspace structure
-lint-configkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/eslint-config
+lint-configkdir -p apps/web apps/api packages/types packages/validation packages/typescript-config packages/lint-config
 ```
 
 **Frontend (Next.js 16.0.3 App Router):**
 
 ```bash
 cd apps
-npx create-next-app@latest web --typescript --tailwind --app --eslint --src-dir --import-alias "@/*"
+npx create-next-app@latest web --typescript --tailwind --app --src-dir --import-alias "@/*"
 # Replace typescript with native preview
 cd web
 pnpm remove typescript
