@@ -6,6 +6,7 @@
     "build": "tsgo",
     "start": "node --env-file=.env  src/index.ts",
     "lint": "eslint .",
+    "check-format": "prettier --check .",
     "check-types": "tsgo --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

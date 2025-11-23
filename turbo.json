@@ -9,6 +9,9 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "check-format": {
+      "dependsOn": ["^check-format"]
+    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },

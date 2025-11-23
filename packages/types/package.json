@@ -8,6 +8,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "lint": "eslint .",
+    "check-format": "prettier --check .",
     "check-types": "tsgo --noEmit",
     "test": "echo 'no tests'"
   },

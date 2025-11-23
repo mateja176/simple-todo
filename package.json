@@ -6,9 +6,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "check-format": "turbo check-format",
     "check-types": "turbo check-types",
     "test": "turbo test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js,mjs,json}\"",
     "prepare": "husky"
   },
   "devDependencies": {

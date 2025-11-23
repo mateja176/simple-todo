@@ -1,8 +1,8 @@
-import { config } from '@repo/eslint-config'
+import { config } from "@repo/eslint-config";
 
 export default [
   ...config,
   {
-    ignores: ['dist/**'],
+    ignores: ["dist/**"],
   },
-]
+];
