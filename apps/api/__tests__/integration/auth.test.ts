@@ -23,12 +23,10 @@ vi.mock("../../src/db/index.js", () => ({
 vi.mock("../../src/lib/auth.js", () => ({
   hashPassword: vi.fn().mockResolvedValue("hashed_password"),
   verifyPassword: vi.fn().mockResolvedValue(true),
-  generateTokens: vi
-    .fn()
-    .mockReturnValue({
-      accessToken: "access_token",
-      refreshToken: "refresh_token",
-    }),
+  generateTokens: vi.fn().mockReturnValue({
+    accessToken: "access_token",
+    refreshToken: "refresh_token",
+  }),
 }));
 
 vi.mock("../../src/middleware/rate-limit.js", () => ({

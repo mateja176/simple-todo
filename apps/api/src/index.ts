@@ -1,5 +1,5 @@
-import { serve } from '@hono/node-server'
-import app from './app.ts'
+import { serve } from "@hono/node-server";
+import app from "./app.ts";
 
 serve(
   {
@@ -8,6 +8,6 @@ serve(
   },
   (info) => {
     // eslint-disable-next-line no-console
-    console.log(`Server is running on http://localhost:${info.port}`)
+    console.log(`Server is running on http://localhost:${info.port}`);
   }
-)
+);

@@ -1,32 +1,32 @@
-import { zValidator } from '@hono/zod-validator'
-import { loginSchema, signupSchema } from '@repo/validation'
-import { eq } from 'drizzle-orm'
-import { Hono } from 'hono'
-import { setCookie } from 'hono/cookie'
-import { db } from '../db/index.ts'
-import { refreshTokens, users } from '../db/schema/index.ts'
-import { generateTokens, hashPassword, verifyPassword } from '../lib/auth.ts'
-import { loginRateLimiter } from '../middleware/rate-limit.ts'
+import { zValidator } from "@hono/zod-validator";
+import { loginSchema, signupSchema } from "@repo/validation";
+import { eq } from "drizzle-orm";
+import { Hono } from "hono";
+import { setCookie } from "hono/cookie";
+import { db } from "../db/index.ts";
+import { refreshTokens, users } from "../db/schema/index.ts";
+import { generateTokens, hashPassword, verifyPassword } from "../lib/auth.ts";
+import { loginRateLimiter } from "../middleware/rate-limit.ts";
 
-const auth: Hono = new Hono()
+const auth: Hono = new Hono();
 
-auth.post('/signup', zValidator('json', signupSchema), async (c) => {
-  const { email, password } = c.req.valid('json')
+auth.post("/signup", zValidator("json", signupSchema), async (c) => {
+  const { email, password } = c.req.valid("json");
 
   // Check if user exists
   const existingUser = await db.query.users.findFirst({
     where: eq(users.email, email),
-  })
+  });
 
   if (existingUser) {
-    return c.json({ error: 'User already exists' }, 409)
+    return c.json({ error: "User already exists" }, 409);
   }
 
   // Hash password
-  const passwordHash = await hashPassword(password)
+  const passwordHash = await hashPassword(password);
 
   // Create user
-  const now = Math.floor(Date.now() / 1000)
+  const now = Math.floor(Date.now() / 1000);
   const [user] = await db
     .insert(users)
     .values({
@@ -35,10 +35,10 @@ auth.post('/signup', zValidator('json', signupSchema), async (c) => {
       createdAt: now,
       updatedAt: now,
     })
-    .returning()
+    .returning();
 
   // Generate tokens
-  const { accessToken, refreshToken } = generateTokens(user.id)
+  const { accessToken, refreshToken } = generateTokens(user.id);
 
   // Store refresh token
   await db.insert(refreshTokens).values({
@@ -46,16 +46,16 @@ auth.post('/signup', zValidator('json', signupSchema), async (c) => {
     token: refreshToken,
     expiresAt: now + 30 * 24 * 60 * 60, // 30 days
     createdAt: now,
-  })
+  });
 
   // Set httpOnly cookie
-  setCookie(c, 'refreshToken', refreshToken, {
+  setCookie(c, "refreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict',
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict",
     maxAge: 30 * 24 * 60 * 60,
-    path: '/',
-  })
+    path: "/",
+  });
 
   return c.json(
     {
@@ -67,57 +67,62 @@ auth.post('/signup', zValidator('json', signupSchema), async (c) => {
       accessToken,
     },
     201
-  )
-})
+  );
+});
 
-auth.post('/login', loginRateLimiter, zValidator('json', loginSchema), async (c) => {
-  const { email, password } = c.req.valid('json')
+auth.post(
+  "/login",
+  loginRateLimiter,
+  zValidator("json", loginSchema),
+  async (c) => {
+    const { email, password } = c.req.valid("json");
 
-  // Find user
-  const user = await db.query.users.findFirst({
-    where: eq(users.email, email),
-  })
+    // Find user
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, email),
+    });
 
-  if (!user) {
-    return c.json({ error: 'Invalid credentials' }, 401)
+    if (!user) {
+      return c.json({ error: "Invalid credentials" }, 401);
+    }
+
+    // Verify password
+    const isValid = await verifyPassword(password, user.passwordHash);
+
+    if (!isValid) {
+      return c.json({ error: "Invalid credentials" }, 401);
+    }
+
+    // Generate tokens
+    const { accessToken, refreshToken } = generateTokens(user.id);
+
+    // Store refresh token
+    const now = Math.floor(Date.now() / 1000);
+    await db.insert(refreshTokens).values({
+      userId: user.id,
+      token: refreshToken,
+      expiresAt: now + 30 * 24 * 60 * 60, // 30 days
+      createdAt: now,
+    });
+
+    // Set httpOnly cookie
+    setCookie(c, "refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
+
+    return c.json({
+      user: {
+        id: user.id,
+        email: user.email,
+        createdAt: user.createdAt,
+      },
+      accessToken,
+    });
   }
+);
 
-  // Verify password
-  const isValid = await verifyPassword(password, user.passwordHash)
-
-  if (!isValid) {
-    return c.json({ error: 'Invalid credentials' }, 401)
-  }
-
-  // Generate tokens
-  const { accessToken, refreshToken } = generateTokens(user.id)
-
-  // Store refresh token
-  const now = Math.floor(Date.now() / 1000)
-  await db.insert(refreshTokens).values({
-    userId: user.id,
-    token: refreshToken,
-    expiresAt: now + 30 * 24 * 60 * 60, // 30 days
-    createdAt: now,
-  })
-
-  // Set httpOnly cookie
-  setCookie(c, 'refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict',
-    maxAge: 30 * 24 * 60 * 60,
-    path: '/',
-  })
-
-  return c.json({
-    user: {
-      id: user.id,
-      email: user.email,
-      createdAt: user.createdAt,
-    },
-    accessToken,
-  })
-})
-
-export default auth
+export default auth;
